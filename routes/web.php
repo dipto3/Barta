@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendControllers\LoginController;
 use App\Http\Controllers\FrontendControllers\RegistrationController;
+use App\Http\Controllers\FrontendControllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,3 +24,5 @@ Route::post('/user/login-check', [LoginController::class, 'login']);
 
 Route::get('/user/registration', [RegistrationController::class, 'create']);
 Route::post('/user/store', [RegistrationController::class, 'store']);
+
+Route::get('/home', [HomeController::class, 'home'])->name('home');
