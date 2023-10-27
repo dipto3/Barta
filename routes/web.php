@@ -19,6 +19,7 @@ Route::get('/', function () {
 });
 //Frontend routes...
 Route::get('/user/login', [LoginController::class, 'login_page']);
+Route::post('/user/login-check', [LoginController::class, 'login']);
 
 Route::get('/user/registration', [RegistrationController::class, 'create']);
 Route::post('/user/store', [RegistrationController::class, 'store']);

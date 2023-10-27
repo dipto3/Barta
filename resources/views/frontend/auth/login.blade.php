@@ -37,12 +37,21 @@
           class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
           Sign in to your account
         </h1>
+
       </div>
 
+
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+
+            @if ($errors->has('email'))
+            <span class="invalid-feedback">
+                <strong style="color: red;">{{ $errors->first('email') }}</strong>
+            </span>
+            @endif
+     
         <form
           class="space-y-6"
-          action="#"
+          action="{{url('/user/login-check')}}"
           method="POST">
           <div>
             <label
@@ -50,6 +59,7 @@
               class="block text-sm font-medium leading-6 text-gray-900"
               >Email address</label
             >
+            @csrf
             <div class="mt-2">
               <input
                 id="email"
@@ -101,7 +111,7 @@
         <p class="mt-10 text-center text-sm text-gray-500">
           Don't have an account yet?
           <a
-            href="./register.html"
+            href="{{url('/user/registration')}}"
             class="font-semibold leading-6 text-black hover:text-black"
             >Sign Up</a
           >

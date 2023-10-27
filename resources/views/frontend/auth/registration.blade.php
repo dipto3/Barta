@@ -27,7 +27,7 @@
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
       <div class="sm:mx-auto sm:w-full sm:max-w-sm">
         <a
-          href="./index.html"
+          href=""
           class="text-center text-6xl font-bold text-gray-900"
           ><h1>Barta</h1></a
         >
@@ -38,6 +38,12 @@
       </div>
 
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+
+        @if (Session::get('fail'))
+            <div class="alert alert-danger">
+                	{{Session::get('fail')}}
+            </div>
+        @endif
         <form
           class="space-y-6"
           action="{{url('/user/store')}}"
@@ -131,7 +137,7 @@
         <p class="mt-10 text-center text-sm text-gray-500">
           Already a member?
           <a
-            href="./login.html"
+            href="{{url('/user/login')}}"
             class="font-semibold leading-6 text-black hover:text-black"
             >Sign In</a
           >

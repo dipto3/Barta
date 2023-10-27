@@ -24,9 +24,9 @@ class RegistrationController extends Controller
         ]);
 
         if($input){
-            return back()->with('success','Registration Successful');
+            return back()->with('success','Registration Successful!');
         }else{
-            return back()->with('Something went wrong!!');
+            return back()->with('fail','Something went wrong!!');
         }
     }
 }
