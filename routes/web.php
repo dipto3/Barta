@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\FrontendControllers\LoginController;
+use App\Http\Controllers\FrontendControllers\RegistrationController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//Frontend routes...
+
+
+Route::get('/user/login', [LoginController::class, 'login_page']);
+
+Route::get('/user/registration', [RegistrationController::class, 'registration_page']);
