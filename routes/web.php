@@ -18,8 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 //Frontend routes...
-
-
 Route::get('/user/login', [LoginController::class, 'login_page']);
 
-Route::get('/user/registration', [RegistrationController::class, 'registration_page']);
+Route::get('/user/registration', [RegistrationController::class, 'create']);
+Route::post('/user/store', [RegistrationController::class, 'store']);
