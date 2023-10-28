@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FrontendControllers\LoginController;
 use App\Http\Controllers\FrontendControllers\RegistrationController;
 use App\Http\Controllers\FrontendControllers\HomeController;
+use App\Http\Controllers\FrontendControllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,3 +27,6 @@ Route::get('/user/registration', [RegistrationController::class, 'create']);
 Route::post('/user/store', [RegistrationController::class, 'store']);
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
+Route::get('/profile', [ProfileController::class, 'profile']);
+Route::get('/profile/{id}', [ProfileController::class, 'edit']);
+Route::post('/profile/update/{id}', [ProfileController::class, 'update']);

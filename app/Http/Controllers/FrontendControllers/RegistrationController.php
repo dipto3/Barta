@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\RegistrationFormRequest;
 
 class RegistrationController extends Controller
 {
@@ -14,12 +15,13 @@ class RegistrationController extends Controller
         return view('frontend.auth.registration');
     }
 
-    public function store(Request $request){
-
+    public function store(RegistrationFormRequest $request){
+        
+        $request->validated();
         $input = DB::table('users')->insert([
             'name' => $request->name,
             'email'=>$request->email,
-            'userName'=>$request->username,
+            'userName'=>$request->userName,
             'password'=>Hash::make($request->password)
         ]);
 
