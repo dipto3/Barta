@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\ProfileUpdateFormRequest;
 class ProfileController extends Controller
 {
     public function profile(){
@@ -22,15 +23,15 @@ class ProfileController extends Controller
     }
 
     public function update(Request $request,$id){
+        // $request->validated();
         $userInfo= User::where('id',$id)->update([
             'name' => $request->name,
             'email'=>$request->email,
-            'userName'=>$request->username,
+            'userName'=>$request->userName,
             'bio'=>$request->bio,
             'password'=>Hash::make($request->password)
         ]);
-
-        return "saved";
+        return redirect()->back();
     }
 
 }

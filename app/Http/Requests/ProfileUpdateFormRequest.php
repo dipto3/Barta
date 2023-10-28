@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegistrationFormRequest extends FormRequest
+class ProfileUpdateFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,21 +24,21 @@ class RegistrationFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required',
-            'userName' => 'required|string|unique:users,userName',
+
+            'email' => '|unique:users,email',
+
+            'userName' => 'unique:users,userName',
         ];
     }
 
     public function messages()
     {
         return [
-            'name.required' => "Name must be filled up",
-            'email.required' => "Email field must be required",
+
+            // 'email.required' => "Email field must be required",
             'email.unique' => 'The email address is already in use.',
-            'password.required' => "Password field must be required",
-            'userName.required' => "Username must be required",
+
+            // 'userName.required' => "Username must be required",
             'userName.unique' => 'The username is already in use.',
 
         ];
