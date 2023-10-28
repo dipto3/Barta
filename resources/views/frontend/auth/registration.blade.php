@@ -38,7 +38,11 @@
       </div>
 
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-
+        @if (Session::get('success'))
+        <div class="alert alert-success">
+               <strong style="color: rgb(29, 138, 29)">{{Session::get('success')}}</strong>
+        </div>
+    @endif
         @if (Session::get('fail'))
             <div class="alert alert-danger">
                 	{{Session::get('fail')}}
