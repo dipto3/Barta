@@ -16,11 +16,11 @@ use App\Http\Controllers\FrontendControllers\ProfileController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 //Frontend routes...
-Route::get('/user/login', [LoginController::class, 'login_page']);
+Route::get('/', [LoginController::class, 'login_page']);
 Route::post('/user/login-check', [LoginController::class, 'login']);
 
 Route::get('/user/registration', [RegistrationController::class, 'create']);

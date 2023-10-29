@@ -16,7 +16,16 @@ class="container max-w-xl mx-auto space-y-8 mt-8 px-2 md:px-0 min-h-screen">
         This information will be displayed publicly so be careful what you
         share.
       </p>
-
+      @if (Session::get('success'))
+      <div class="alert alert-success">
+          <strong style="color: rgb(29, 138, 29)">{{Session::get('success')}}</strong>
+      </div>
+      @endif
+      @if (Session::get('fail'))
+      <div class="alert alert-danger">
+          {{Session::get('fail')}}
+      </div>
+      @endif
       <div class="mt-10 border-b border-gray-900/10 pb-12">
 <!--              <div class="col-span-full mt-10 pb-10">-->
 <!--                <label-->
@@ -103,7 +112,7 @@ class="container max-w-xl mx-auto space-y-8 mt-8 px-2 md:px-0 min-h-screen">
 
                 class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
                 @error('name')
-                <span style="float: right;" class="text-danger">{{ $message }}</span>
+                <span style="float: right;color:red;" class="text-danger">{{ $message }}</span>
             @enderror
             </div>
           </div>
@@ -123,7 +132,7 @@ class="container max-w-xl mx-auto space-y-8 mt-8 px-2 md:px-0 min-h-screen">
 
                 class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
                   @error('userName')
-                    <span style="float: right;" class="text-danger">{{ $message }}</span>
+                    <span style="float: right;color:red;" class="text-danger">{{ $message }}</span>
                 @enderror
             </div>
           </div>
@@ -143,6 +152,9 @@ class="container max-w-xl mx-auto space-y-8 mt-8 px-2 md:px-0 min-h-screen">
                 value="{{$user->email}}"
 
                 class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
+                @error('email')
+                <span style="float: right;color:red;" class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
           </div>
 
@@ -159,6 +171,9 @@ class="container max-w-xl mx-auto space-y-8 mt-8 px-2 md:px-0 min-h-screen">
                 id="password"
                 autocomplete="password"
                 class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6" />
+                @error('password')
+                <span style="float: right;color:red;" class="text-danger">{{ $message }}</span>
+                @enderror
             </div>
           </div>
         </div>

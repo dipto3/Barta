@@ -102,7 +102,7 @@
 
             <p class="mt-10 text-center text-sm text-gray-500">
                 Already a member?
-                <a href="{{url('/user/login')}}" class="font-semibold leading-6 text-black hover:text-black">Sign In</a>
+                <a href="{{url('/')}}" class="font-semibold leading-6 text-black hover:text-black">Sign In</a>
             </p>
         </div>
     </div>
