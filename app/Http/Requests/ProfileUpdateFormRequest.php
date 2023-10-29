@@ -24,7 +24,7 @@ class ProfileUpdateFormRequest extends FormRequest
      */
     public function rules()
     {
-        $userId = Auth::user()->id; // Assuming you pass the user's ID in the route.
+        $userId = Auth::user()->id;
 
         return [
             'name' => 'required',
