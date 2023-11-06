@@ -46,7 +46,7 @@
                     <div class="mt-2">
                         <input id="name" name="name" type="text" autocomplete="name" placeholder="Alp Arslan" {{--
                             required --}}
-                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
+                            class="block w-full rounded-md border p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 @error('name') border-red-500 @enderror " />
                         @error('name')
                         <span style="float: right; color:red;">{{ $message }}</span>
                         @enderror
@@ -59,7 +59,7 @@
                     <div class="mt-2">
                         <input id="username" name="userName" type="text" autocomplete="username"
                             placeholder="alparslan1029" {{-- required --}}
-                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
+                            class="block w-full rounded-md border p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 @error('userName') border-red-500 @enderror" />
                         @error('userName')
                         <span style="float: right; color:red;">{{ $message }}</span>
                         @enderror
@@ -72,7 +72,7 @@
                     <div class="mt-2">
                         <input id="email" name="email" type="email" autocomplete="email"
                             placeholder="alp.arslan@mail.com" {{-- required --}}
-                            class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
+                            class="block w-full rounded-md border p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6 @error('email') border-red-500 @enderror " />
                         @error('email')
                         <span style="float: right; color:red;">{{ $message }}</span>
                         @enderror
@@ -85,7 +85,7 @@
                     <div class="mt-2">
                         <input id="password" name="password" type="password" autocomplete="current-password"
                             placeholder="••••••••" {{-- required --}}
-                            class="block w-full rounded-md border-0 p-2 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
+                            class="block w-full rounded-md border p-2 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6  @error('password') border-red-500 @enderror" />
                         @error('password')
                         <span style="float: right; color:red;">{{ $message }}</span>
                         @enderror
