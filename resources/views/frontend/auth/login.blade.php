@@ -48,7 +48,7 @@
                 <strong style="color: red;">{{ $errors->first('email') }}</strong>
             </span>
             @endif
-     
+
         <form
           class="space-y-6"
           action="{{url('/user/login-check')}}"
@@ -67,7 +67,7 @@
                 type="email"
                 autocomplete="email"
                 placeholder="bruce@wayne.com"
-                required
+                {{-- required --}}
                 class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
             </div>
           </div>
@@ -94,7 +94,7 @@
                 type="password"
                 autocomplete="current-password"
                 placeholder="••••••••"
-                required
+                {{-- required --}}
                 class="block w-full rounded-md border-0 p-2 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-black sm:text-sm sm:leading-6" />
             </div>
           </div>
