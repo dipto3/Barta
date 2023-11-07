@@ -113,8 +113,7 @@
           <a
             href="{{url('/user/registration')}}"
             class="font-semibold leading-6 text-black hover:text-black"
-            >Sign Up</a
-          >
+            >Sign Up</a>
         </p>
       </div>
     </div>
