@@ -121,14 +121,26 @@
                   id="user-menu-item-1"
                   >Edit Profile</a
                 >
-                <a
-                  href="#"
-                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                  role="menuitem"
-                  tabindex="-1"
-                  id="user-menu-item-2"
-                  >Sign out</a
-                >
+                {{-- <a
+                href="{{url('/user/logout')}}"
+                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                role="menuitem"
+                tabindex="-1"
+                id="user-menu-item-2"
+                >Sign out</a
+              > --}}
+                <form action="{{url('/user/logout')}}" method="post"  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                    @csrf
+                    <button
+                  type="submit"
+                    {{-- class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" --}}
+                    role="menuitem"
+                    tabindex="-1"
+                    id="user-menu-item-2"
+                    >Sign out</button
+                  >
+                </form>
+
               </div>
             </div>
           </div>

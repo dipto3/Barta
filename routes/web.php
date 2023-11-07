@@ -22,8 +22,10 @@ use App\Http\Controllers\FrontendControllers\ProfileController;
 //Frontend routes...
 Route::get('/', [LoginController::class, 'login_page']);
 Route::post('/user/login-check', [LoginController::class, 'login']);
-
+Route::post('/user/logout', [LoginController::class, 'logout']);
+// Route::get('/user/logout', [LoginController::class, 'logout']);
 Route::get('/user/registration', [RegistrationController::class, 'create']);
+
 Route::post('/user/store', [RegistrationController::class, 'store']);
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
