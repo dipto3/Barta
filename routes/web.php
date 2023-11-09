@@ -5,6 +5,7 @@ use App\Http\Controllers\FrontendControllers\LoginController;
 use App\Http\Controllers\FrontendControllers\RegistrationController;
 use App\Http\Controllers\FrontendControllers\HomeController;
 use App\Http\Controllers\FrontendControllers\ProfileController;
+use App\Http\Controllers\FrontendControllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,3 +33,5 @@ Route::get('/home', [HomeController::class, 'home'])->name('home');
 Route::get('/profile', [ProfileController::class, 'profile']);
 Route::get('/profile/{id}', [ProfileController::class, 'edit']);
 Route::post('/profile/update/{id}', [ProfileController::class, 'update']);
+
+Route::post('/post/store', [PostController::class, 'store']);
