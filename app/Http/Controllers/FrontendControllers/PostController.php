@@ -18,7 +18,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         // return (new PostService)->createPost($request);
-       $post = $this->postService->createPost($request);
+        $this->postService->createPost($request);
 
         return redirect()->back();
     }
