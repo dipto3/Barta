@@ -19,9 +19,11 @@ use App\Http\Controllers\FrontendControllers\ProfileController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
 //Frontend routes...
 Route::get('/', [LoginController::class, 'login_page']);
 Route::post('/user/login-check', [LoginController::class, 'login']);
+Route::post('/user/logout', [LoginController::class, 'logout']);
 
 Route::get('/user/registration', [RegistrationController::class, 'create']);
 Route::post('/user/store', [RegistrationController::class, 'store']);

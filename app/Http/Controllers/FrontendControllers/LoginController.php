@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function login_page(){
+    public function login_page()
+    {
         return view('frontend.auth.login');
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -22,7 +24,6 @@ class LoginController extends Controller
             $request->session()->regenerate();
 
             return redirect()->intended('home');
-           
         }
 
         return back()->withErrors([
@@ -30,4 +31,12 @@ class LoginController extends Controller
         ])->onlyInput('email');
     }
 
+    public function logout(Request $request)
+    {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect('/');
+
+    }
 }
