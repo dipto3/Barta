@@ -31,9 +31,7 @@ class PostController extends Controller
 
     public function delete($id)
     {
-        $loggedInUser = Auth::user()->id;
-        $post = Post::where('user_id', $loggedInUser)->find($id);
-        $post->delete();
+        $this->postService->remove($id);
         return redirect()->back();
     }
 }

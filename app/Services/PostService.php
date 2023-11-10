@@ -17,4 +17,10 @@ class PostService
         ]);
         // dd($post);
     }
+
+    public function remove($id){
+        $loggedInUser = Auth::user()->id;
+        $post = Post::where('user_id', $loggedInUser)->find($id);
+        $post->delete();
+    }
 }
