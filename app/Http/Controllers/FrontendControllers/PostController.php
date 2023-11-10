@@ -5,6 +5,8 @@ namespace App\Http\Controllers\FrontendControllers;
 use App\Http\Controllers\Controller;
 use App\Services\PostService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -21,5 +23,16 @@ class PostController extends Controller
         $this->postService->createPost($request);
 
         return redirect()->back();
+    }
+    public function delete($id){
+
+        $loggedInUser = Auth::user()->id;
+        // dd($loggedInUser);
+
+            $post = Post::where('user_id',$loggedInUser)->find($id);
+            $post->delete();
+            return redirect()->back();
+
+
     }
 }

@@ -151,7 +151,7 @@
                             </div>
                             <!-- /User Info -->
                         </div>
-
+                        @if (Auth::user()->id == $post->user_id)
                         <!-- Card Action Dropdown -->
                         <div class="flex flex-shrink-0 self-center" x-data="{ open: false }">
                             <div class="relative inline-block text-left">
@@ -167,6 +167,7 @@
                                         </svg>
                                     </button>
                                 </div>
+
                                 <!-- Dropdown menu -->
                                 <div x-show="open" @click.away="open = false"
                                     class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
@@ -174,11 +175,15 @@
                                     tabindex="-1">
                                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                         role="menuitem" tabindex="-1" id="user-menu-item-0">Edit</a>
-                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        role="menuitem" tabindex="-1" id="user-menu-item-1">Delete</a>
+                                    <form action="{{url('/post/remove/'.$post->id)}}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                    <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                        role="menuitem" tabindex="-1" id="user-menu-item-1">Delete</button>
                                 </div>
-                            </div>
 
+                            </div>
+                            @endif
                         </div>
                         <!-- /Card Action Dropdown -->
                     </div>

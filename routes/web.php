@@ -36,3 +36,4 @@ Route::post('/profile/update/{id}', [ProfileController::class, 'update']);
 
 Route::post('/post/store', [PostController::class, 'store']);
 
+Route::delete('/post/remove/{id}', [PostController::class, 'delete']);
