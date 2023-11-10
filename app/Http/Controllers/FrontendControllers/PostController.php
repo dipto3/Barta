@@ -21,23 +21,19 @@ class PostController extends Controller
     {
         // return (new PostService)->createPost($request);
         $this->postService->createPost($request);
-
         return redirect()->back();
     }
-    public function single_post($id){
-        $post = Post::find($id);
-        return view('frontend.single_post',compact('post'));
+    public function single_post($uuid)
+    {
+        $post = Post::where('uuid', $uuid)->first();
+        return view('frontend.single_post', compact('post'));
     }
 
-    public function delete($id){
-
+    public function delete($id)
+    {
         $loggedInUser = Auth::user()->id;
-        // dd($loggedInUser);
-
-            $post = Post::where('user_id',$loggedInUser)->find($id);
-            $post->delete();
-            return redirect()->back();
-
-
+        $post = Post::where('user_id', $loggedInUser)->find($id);
+        $post->delete();
+        return redirect()->back();
     }
 }
