@@ -23,6 +23,7 @@ class PostController extends Controller
         $this->postService->createPost($request);
         return redirect()->back();
     }
+
     public function single_post($uuid)
     {
         $post = Post::where('uuid', $uuid)->first();
