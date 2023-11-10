@@ -122,6 +122,9 @@
         <!-- Newsfeed -->
         <section id="newsfeed" class="space-y-6">
             <!-- Barta Card -->
+            @foreach ($allPosts as $post)
+
+
             <article class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6">
                 <!-- Barta Card Top -->
                 <header>
@@ -139,11 +142,11 @@
                             <!-- User Info -->
                             <div class="text-gray-900 flex flex-col min-w-0 flex-1">
                                 <a href="profile.html" class="hover:underline font-semibold line-clamp-1">
-                                    Al Nahian
+                                    {{$post->user->name}}
                                 </a>
 
                                 <a href="profile.html" class="hover:underline text-sm text-gray-500 line-clamp-1">
-                                    @alnahian2003
+                                    {{$post->user->userName}}
                                 </a>
                             </div>
                             <!-- /User Info -->
@@ -184,21 +187,15 @@
                 <!-- Content -->
                 <div class="py-4 text-gray-700 font-normal">
                     <p>
-                        🎉🥳 Turning 20 today! 🎂
-                        <br />
-                        One of the best things in my life has been my love affair with
-                        <a href="#laravel" class="text-black font-semibold hover:underline">#Laravel</a>
-                        <br />
-                        <br />
-                        Keep me in your prayers 😌
+                        {{$post->description}}
                     </p>
                 </div>
 
                 <!-- Date Created & View Stat -->
                 <div class="flex items-center gap-2 text-gray-500 text-xs my-2">
-                    <span class="">6 minutes ago</span>
+                    <span class="">{{$post->created_at->diffForHumans()}}</span>
                     <span class="">•</span>
-                    <span>450 views</span>
+                    <span>{{$post->total_views}}</span>
                 </div>
 
                 <!-- Barta Card Bottom -->
@@ -277,6 +274,7 @@
                 <!--          </footer>-->
                 <!-- /Barta Card Bottom -->
             </article>
+            @endforeach
             <!-- /Barta Card -->
 
 
