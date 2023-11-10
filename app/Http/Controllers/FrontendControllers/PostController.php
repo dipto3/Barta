@@ -24,6 +24,11 @@ class PostController extends Controller
 
         return redirect()->back();
     }
+    public function single_post($id){
+        $post = Post::find($id);
+        return view('frontend.single_post',compact('post'));
+    }
+
     public function delete($id){
 
         $loggedInUser = Auth::user()->id;
