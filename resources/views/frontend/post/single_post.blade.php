@@ -32,7 +32,7 @@ class="container max-w-xl mx-auto space-y-8 mt-8 px-2 md:px-0 min-h-screen">
             </a>
 
             <a
-              href="profile.html"
+              href="#"
               class="hover:underline text-sm text-gray-500 line-clamp-1">
               {{$post->userName}}
             </a>
@@ -70,7 +70,7 @@ class="container max-w-xl mx-auto space-y-8 mt-8 px-2 md:px-0 min-h-screen">
                     aria-labelledby="user-menu-button"
                     tabindex="-1">
               <a
-                      href="#"
+                      href="{{url('/post/edit/'.$post->uuid)}}"
                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                       role="menuitem"
                       tabindex="-1"
