@@ -15,7 +15,7 @@ class PostService
             'total_views' => 1,
             'description' => $request->barta,
         ]);
-        // dd($post);
+     
     }
 
     public function remove($id){

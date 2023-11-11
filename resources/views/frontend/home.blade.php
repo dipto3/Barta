@@ -142,11 +142,12 @@
                             <!-- User Info -->
                             <div class="text-gray-900 flex flex-col min-w-0 flex-1">
                                 <a href="{{url('/post/' . $post->uuid)}}" class="hover:underline font-semibold line-clamp-1">
-                                    {{$post->user->name}}
+                                    {{-- {{$post->user->name}} --}}
+                                    {{$post->user_name}}
                                 </a>
 
                                 <a href="profile.html" class="hover:underline text-sm text-gray-500 line-clamp-1">
-                                    {{$post->user->userName}}
+                                    {{$post->userName}}
                                 </a>
                             </div>
                             <!-- /User Info -->
@@ -198,7 +199,8 @@
 
                 <!-- Date Created & View Stat -->
                 <div class="flex items-center gap-2 text-gray-500 text-xs my-2">
-                    <span class="">{{$post->created_at->diffForHumans()}}</span>
+                    <span class="">{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
+
                     <span class="">•</span>
                     <span>{{$post->total_views}}</span>
                 </div>
