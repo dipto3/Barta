@@ -176,11 +176,10 @@
                                     tabindex="-1">
                                     <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                         role="menuitem" tabindex="-1" id="user-menu-item-0">Edit</a>
-                                    <form action="{{url('/post/remove/'.$post->id)}}" method="POST">
+                                    <form action="{{url('/post/remove/'.$post->id)}}" method="POST" class="block  py-2 text-sm text-gray-700 hover:bg-gray-100">
                                         @csrf
                                         @method('delete')
-                                    <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                        role="menuitem" tabindex="-1" id="user-menu-item-1">Delete</button>
+                                    <button type="submit" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"  id="user-menu-item-1">Delete</button>
                                 </div>
 
                             </div>
@@ -199,7 +198,7 @@
 
                 <!-- Date Created & View Stat -->
                 <div class="flex items-center gap-2 text-gray-500 text-xs my-2">
-                    <span class="">{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
+                    <span class="">{{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</span>
 
                     <span class="">•</span>
                     <span>{{$post->total_views}}</span>

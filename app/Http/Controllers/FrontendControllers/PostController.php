@@ -27,11 +27,10 @@ class PostController extends Controller
 
     public function single_post($uuid)
     {
-        // $post = DB::table('posts')->where('uuid', $uuid)->first();
-        $post = DB::table('posts')->where('uuid', $uuid)
+        $post = DB::table('posts')
+        ->where('uuid', $uuid)
         ->join('users', 'posts.user_id', '=', 'users.id')
         ->select('posts.*', 'users.name as user_name','users.userName as userName')
-        // ->orderBy('id','DESC')
         ->first();
         return view('frontend.single_post', compact('post'));
     }
