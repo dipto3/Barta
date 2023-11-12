@@ -34,8 +34,8 @@ Route::get('/profile', [ProfileController::class, 'profile']);
 Route::get('/profile/{id}', [ProfileController::class, 'edit']);
 Route::post('/profile/update/{id}', [ProfileController::class, 'update']);
 
-Route::post('/post/store', [PostController::class, 'store']);
-Route::get('/post/{uuid}', [PostController::class, 'single_post']);
-Route::get('/post/edit/{uuid}', [PostController::class, 'edit']);
-Route::put('/post/update/{id}', [PostController::class, 'update']);
-Route::delete('/post/remove/{id}', [PostController::class, 'delete']);
+Route::post('/post/store', [PostController::class, 'store'])->name('postStore');
+Route::get('/post/{uuid}', [PostController::class, 'single_post'])->name('singlePost');
+Route::get('/post/edit/{uuid}', [PostController::class, 'edit'])->name('postEdit');
+Route::put('/post/update/{id}', [PostController::class, 'update'])->name('postUpdate');
+Route::delete('/post/remove/{id}', [PostController::class, 'delete'])->name('postRemove');
