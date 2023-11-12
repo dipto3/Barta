@@ -202,7 +202,7 @@
                     <span class="">{{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</span>
 
                     <span class="">•</span>
-                    <span>{{$post->total_views}}</span>
+                    <span>{{$post->total_views}} views</span>
                 </div>
 
                 <!-- Barta Card Bottom -->

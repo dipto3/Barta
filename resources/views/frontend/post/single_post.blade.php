@@ -81,7 +81,7 @@
                 <div class="flex items-center gap-2 text-gray-500 text-xs my-2">
                     <span class="">{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
                     <span class="">•</span>
-                    <span> {{ $post->total_views }} views</span>
+                    <span> {{$post->total_views}} views</span>
                 </div>
 
                 <!-- Barta Card Bottom -->

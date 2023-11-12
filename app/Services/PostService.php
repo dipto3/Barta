@@ -13,7 +13,7 @@ class PostService
         $post = DB::table('posts')->insert([
             'user_id' => Auth::user()->id,
             'uuid' => Str::uuid()->toString(),
-            // 'total_views' => 1,
+            'total_views' => 1,
             'description' => $request->barta,
             'created_at' => Carbon::now()
         ]);
