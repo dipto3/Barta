@@ -26,11 +26,14 @@ class PostController extends Controller
 
     public function single_post($uuid)
     {
+        $post = DB::table('posts')->where('uuid', $uuid)->increment('total_views',1);
         $post = DB::table('posts')
             ->where('uuid', $uuid)
             ->join('users', 'posts.user_id', '=', 'users.id')
             ->select('posts.*', 'users.name as user_name', 'users.userName as userName')
             ->first();
+
+
         return view('frontend.post.single_post', compact('post'));
     }
     public function edit($uuid)
@@ -38,6 +41,7 @@ class PostController extends Controller
         $post = DB::table('posts')
             ->where('uuid', $uuid)
             ->first();
+
         return view('frontend.post.edit', compact('post'));
     }
 

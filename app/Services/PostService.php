@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -14,7 +13,7 @@ class PostService
         $post = DB::table('posts')->insert([
             'user_id' => Auth::user()->id,
             'uuid' => Str::uuid()->toString(),
-            'total_views' => 1,
+            // 'total_views' => 1,
             'description' => $request->barta,
             'created_at' => Carbon::now()
         ]);
