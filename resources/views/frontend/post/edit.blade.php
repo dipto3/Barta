@@ -25,7 +25,7 @@
                 <div class="text-gray-700 font-normal w-full">
                     <textarea
                         class="block w-full p-2 pt-2 text-gray-900 rounded-lg border-none outline-none focus:ring-0 focus:ring-offset-0"
-                        name="barta" rows="2"  >{{$post->description}}</textarea>
+                        name="description" rows="2"  >{{$post->description}}</textarea>
                 </div>
             </div>
         </div>

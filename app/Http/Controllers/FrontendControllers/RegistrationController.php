@@ -16,7 +16,7 @@ class RegistrationController extends Controller
     }
 
     public function store(RegistrationFormRequest $request){
-        
+
         $request->validated();
         $input = DB::table('users')->insert([
             'name' => $request->name,

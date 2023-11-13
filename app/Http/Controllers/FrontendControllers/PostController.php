@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontendControllers;
 use App\Http\Controllers\Controller;
 use App\Services\PostService;
 use Illuminate\Http\Request;
+use App\Http\Requests\PostFormRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -17,8 +18,9 @@ class PostController extends Controller
         $this->postService = $postService;
     }
 
-    public function store(Request $request)
+    public function store(PostFormRequest $request)
     {
+        // $request->validated();
         // return (new PostService)->createPost($request);
         $this->postService->createPost($request);
         toastr()->addSuccess('','Post Created Successfully.');
