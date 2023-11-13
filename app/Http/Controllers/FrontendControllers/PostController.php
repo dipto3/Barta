@@ -20,7 +20,7 @@ class PostController extends Controller
 
     public function store(PostFormRequest $request)
     {
-        // $request->validated();
+        $request->validated();
         // return (new PostService)->createPost($request);
         $this->postService->createPost($request);
         toastr()->addSuccess('','Post Created Successfully.');
