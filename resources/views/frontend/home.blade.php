@@ -179,7 +179,7 @@
                                     <form action="{{route('postRemove',$post->id)}}" method="POST" class="block  py-2 text-sm text-gray-700 hover:bg-gray-100">
                                         @csrf
                                         @method('delete')
-                                    <button type="submit" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"  id="user-menu-item-1">Delete</button>
+                                    <button type="submit" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "  id="user-menu-item-1">Delete</button>
                                     </form>
                                 </div>
 
@@ -440,4 +440,5 @@
         </section>
         <!-- /Newsfeed -->
     </main>
+
 @endsection

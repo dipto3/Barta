@@ -14,6 +14,9 @@
     @yield('main')
 
     @include('frontend.partials.footer')
+
+
+  
 </body>
 
 </html>

@@ -21,6 +21,7 @@ class PostController extends Controller
     {
         // return (new PostService)->createPost($request);
         $this->postService->createPost($request);
+        toastr()->addSuccess('','Post Created Successfully.');
         return redirect()->back();
     }
 
@@ -32,8 +33,6 @@ class PostController extends Controller
             ->join('users', 'posts.user_id', '=', 'users.id')
             ->select('posts.*', 'users.name as user_name', 'users.userName as userName')
             ->first();
-
-
         return view('frontend.post.single_post', compact('post'));
     }
     public function edit($uuid)
@@ -48,12 +47,14 @@ class PostController extends Controller
     public function update(Request $request, $uuid)
     {
         $this->postService->updatePost($request, $uuid);
-        return redirect()->back();
+        toastr()->addInfo('','Post Updated Successfully.');
+        return redirect('/home');
     }
 
     public function delete($id)
     {
         $this->postService->remove($id);
+        toastr()->addInfo('','Post Removed Successfully.');
         return redirect('/home');
 
     }
