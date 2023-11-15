@@ -31,7 +31,7 @@ Route::post('/user/store', [RegistrationController::class, 'store']);
 
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 //profile routes...
-Route::get('/profile', [ProfileController::class, 'profile']);
+Route::get('/profile/user/{id}', [ProfileController::class, 'profile']);
 Route::get('/profile/{id}', [ProfileController::class, 'edit']);
 Route::post('/profile/update/{id}', [ProfileController::class, 'update']);
 //post routes...

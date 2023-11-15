@@ -154,7 +154,7 @@
 
                             <!-- User Info -->
                             <div class="text-gray-900 flex flex-col min-w-0 flex-1">
-                                <a href="" class="hover:underline font-semibold line-clamp-1">
+                                <a href="{{url('/profile/user/'. $post->userId)}}" class="hover:underline font-semibold line-clamp-1">
                                     {{-- {{$post->user->name}} --}}
                                     {{$post->user_name}}
                                 </a>
