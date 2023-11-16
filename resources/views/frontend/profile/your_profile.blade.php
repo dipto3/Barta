@@ -22,8 +22,8 @@
 
                 <!-- User Meta -->
                 <div>
-                    <h1 class="font-bold md:text-2xl">{{ $user->name }}</h1>
-                    <p class="text-gray-700">{{ $user->bio }}</p>
+                    <h1 class="font-bold md:text-2xl">{{$user->name}}</h1>
+                    <p class="text-gray-700">{{$user->bio}}</p>
                 </div>
                 <!-- / User Meta -->
             </div>
@@ -66,8 +66,7 @@
             <!-- /Edit Profile Button -->
         </section>
         <!-- /Cover Container -->
-        @if (Auth::user())
-
+        @if (Auth::user()->id == $user->id)
         <!-- Barta Create Post Card -->
         <form method="POST" enctype="multipart/form-data"
             class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6 space-y-3">
@@ -102,6 +101,7 @@
         @endif
         <!-- /Barta Create Post Card -->
 
+        @foreach ($posts as $post)
         <!-- User Specific Posts Feed -->
         <!-- Barta Card -->
         <article class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6">
@@ -120,12 +120,12 @@
 
                         <!-- User Info -->
                         <div class="text-gray-900 flex flex-col min-w-0 flex-1">
-                            <a href="profile.html" class="hover:underline font-semibold line-clamp-1">
-                                Ahmed Shamim Hasan Shaon
+                            <a href="" class="hover:underline font-semibold line-clamp-1">
+                               {{$user->name}}
                             </a>
 
-                            <a href="profile.html" class="hover:underline text-sm text-gray-500 line-clamp-1">
-                                @me_shaon
+                            <a href="" class="hover:underline text-sm text-gray-500 line-clamp-1">
+                                {{$user->userName}}
                             </a>
                         </div>
                         <!-- /User Info -->
@@ -163,26 +163,19 @@
             </header>
 
             <!-- Content -->
-            <a href="./single.html">
+            <a href="">
                 <div class="py-4 text-gray-700 font-normal">
                     <p>
-                        PHP এর $ নিয়ে এত টানাটানি না করে চাইলেই কিন্তু PHP কে fork করে
-                        PoorPHP নামে নতুন ল্যাঙ্গুয়েজ বানানো যায়।
-                        <br />
-                        সবই থাকবে, কেবল $ থাকবে না!
-                        <br />
-                        <br />
-
-                        আইডিয়াটা কেমন বন্ধুরা? 😁
+                        {{$post->description}}
                     </p>
                 </div>
             </a>
 
             <!-- Date Created & View Stat -->
             <div class="flex items-center gap-2 text-gray-500 text-xs my-2">
-                <span class="">15 hours ago</span>
+                <span class="">{{\Carbon\Carbon::parse($post->created_at)->diffForHumans()}}</span>
                 <span class="">•</span>
-                <span>4,450 views</span>
+                <span>{{$post->total_views}} views</span>
             </div>
 
             <!-- Barta Card Bottom -->
@@ -209,6 +202,7 @@
             </footer>
             <!-- /Barta Card Bottom -->
         </article>
+        @endforeach
         <!-- /Barta Card -->
         <!-- User Specific Posts Feed -->
     </main>

@@ -13,7 +13,6 @@ class HomeController extends Controller
         ->select('posts.*', 'users.id as userId', 'users.name as user_name','users.userName as userName')
         ->orderBy('id','DESC')
         ->get();
-        
         return view('frontend.home',compact('allPosts'));
     }
 }

@@ -195,7 +195,6 @@
                                     <button type="submit" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "  id="user-menu-item-1">Delete</button>
                                     </form>
                                 </div>
-
                             </div>
                             @endif
                         </div>
