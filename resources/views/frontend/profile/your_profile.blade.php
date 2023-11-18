@@ -70,15 +70,16 @@
         <!-- /Cover Container -->
         @if (Auth::user()->id == $user->id)
         <!-- Barta Create Post Card -->
-        <form method="POST" enctype="multipart/form-data"
+        <form method="POST" enctype="multipart/form-data" action="{{route('postStore')}}"
             class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-5 sm:px-6 space-y-3">
+            @csrf
             <!-- Create Post Card Top -->
             <div>
                 <div class="flex items-start /space-x-3/">
                     <!-- Content -->
                     <div class="text-gray-700 font-normal w-full">
                         <textarea class="block w-full p-2 text-gray-900 rounded-lg border-none outline-none focus:ring-0 focus:ring-offset-0"
-                            name="barta" rows="2" placeholder="What's going on, {{ Auth::user()->name }}?"></textarea>
+                            name="description" rows="2" placeholder="What's going on, {{ Auth::user()->name }}?"></textarea>
                     </div>
                 </div>
             </div>
@@ -122,11 +123,11 @@
 
                         <!-- User Info -->
                         <div class="text-gray-900 flex flex-col min-w-0 flex-1">
-                            <a href="" class="hover:underline font-semibold line-clamp-1">
+                            <a href="#" class="hover:underline font-semibold line-clamp-1">
                                {{$user->name}}
                             </a>
 
-                            <a href="" class="hover:underline text-sm text-gray-500 line-clamp-1">
+                            <a href="#" class="hover:underline text-sm text-gray-500 line-clamp-1">
                                 {{$user->userName}}
                             </a>
                         </div>
@@ -153,10 +154,13 @@
                                 class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                 role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                                 tabindex="-1">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                <a href="{{route('postEdit',$post->uuid)}}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                     role="menuitem" tabindex="-1" id="user-menu-item-0">Edit</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                    role="menuitem" tabindex="-1" id="user-menu-item-1">Delete</a>
+                                    <form action="{{route('postRemove',$post->id)}}" method="POST" class="block  py-2 text-sm text-gray-700 hover:bg-gray-100">
+                                        @csrf
+                                        @method('delete')
+                                    <button type="submit" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 "  id="user-menu-item-1">Delete</button>
+                                    </form>
                             </div>
                         </div>
                     </div>
@@ -186,7 +190,7 @@
                 <div class="flex items-center justify-between">
                     <div class="flex gap-8 text-gray-600">
                         <!-- Comment Button -->
-                        <button type="button"
+                        <a href="{{route('singlePost' , $post->uuid)}}"
                             class="-m-2 flex gap-2 text-xs items-center rounded-full p-2 text-gray-600 hover:text-gray-800">
                             <span class="sr-only">Comment</span>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
@@ -196,7 +200,7 @@
                             </svg>
 
                             <p>3</p>
-                        </button>
+                        </a>
                         <!-- /Comment Button -->
                     </div>
                 </div>

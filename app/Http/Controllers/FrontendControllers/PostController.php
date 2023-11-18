@@ -33,7 +33,7 @@ class PostController extends Controller
         $post = DB::table('posts')
             ->where('posts.uuid', $uuid)
             ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*', 'users.name as user_name', 'users.userName as userName','users.uuid as uuid')
+            ->select('posts.*', 'users.name as user_name', 'users.userName as userName','users.uuid as userUuid')
             ->first();
         return view('frontend.post.single_post', compact('post'));
     }
@@ -42,7 +42,6 @@ class PostController extends Controller
         $post = DB::table('posts')
             ->where('uuid', $uuid)
             ->first();
-
         return view('frontend.post.edit', compact('post'));
     }
 
