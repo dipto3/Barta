@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Services\PostService;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostFormRequest;
+use App\Models\Comment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
@@ -35,7 +36,10 @@ class PostController extends Controller
             ->join('users', 'posts.user_id', '=', 'users.id')
             ->select('posts.*', 'users.name as user_name', 'users.userName as userName','users.uuid as userUuid')
             ->first();
-        return view('frontend.post.single_post', compact('post'));
+
+        $totalComment = Comment::where('post_id',$post->id)->count();
+        // dd($totalComment);
+        return view('frontend.post.single_post', compact('post','totalComment'));
     }
     public function edit($uuid)
     {

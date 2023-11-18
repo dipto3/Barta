@@ -16,7 +16,7 @@
     @include('frontend.partials.footer')
 
 
-  
+
 </body>
 
 </html>
