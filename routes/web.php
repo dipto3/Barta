@@ -18,7 +18,6 @@ use App\Http\Controllers\FrontendControllers\PostController;
 |
 */
 
-
 require __DIR__.'/auth.php';
 //Frontend routes...
 // Route::get('/', [LoginController::class, 'login_page']);
@@ -29,8 +28,8 @@ require __DIR__.'/auth.php';
 //home page...
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 //profile routes...
-Route::get('/profile/user/{id}', [ProfileController::class, 'profile']);
-Route::get('/profile/{id}', [ProfileController::class, 'edit']);
+Route::get('/profile/user/{uuid}', [ProfileController::class, 'profile']);
+Route::get('/profile/{uuid}', [ProfileController::class, 'edit']);
 Route::post('/profile/update/{id}', [ProfileController::class, 'update']);
 //post routes...
 Route::post('/post/store', [PostController::class, 'store'])->name('postStore');

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Illuminate\Support\Str;
 use App\Http\Requests\RegistrationFormRequest;
 
 class RegisteredUserController extends Controller
@@ -41,6 +42,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'uuid' => Str::uuid()->toString(),
             'userName' => $request->userName,
             'password' => Hash::make($request->password),
         ]);

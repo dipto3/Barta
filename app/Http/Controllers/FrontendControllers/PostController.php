@@ -31,9 +31,9 @@ class PostController extends Controller
     {
         $post = DB::table('posts')->where('uuid', $uuid)->increment('total_views',1);
         $post = DB::table('posts')
-            ->where('uuid', $uuid)
+            ->where('posts.uuid', $uuid)
             ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*', 'users.name as user_name', 'users.userName as userName')
+            ->select('posts.*', 'users.name as user_name', 'users.userName as userName','users.uuid as uuid')
             ->first();
         return view('frontend.post.single_post', compact('post'));
     }

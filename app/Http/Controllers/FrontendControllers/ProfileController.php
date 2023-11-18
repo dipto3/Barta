@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-    public function profile($id)
+    public function profile($uuid)
     {
 
-        $user = DB::table('users')->where('id', $id)->first();
-        $posts = DB::table('posts')->where('user_id', $id)->orderBy('id','DESC')->get();
+        $user = DB::table('users')->where('uuid', $uuid)->first();
+        $posts = DB::table('posts')->where('user_id', $uuid)->orderBy('id','DESC')->get();
 
         // $posts = DB::table('users')
         //                 ->join('posts', 'posts.user_id', 'users.id')
@@ -33,10 +33,11 @@ class ProfileController extends Controller
         return view('frontend.profile.your_profile', compact('user','posts'));
     }
 
-    public function edit($id)
+    public function edit($uuid)
     {
 
-        $user = User::find($id);
+        
+        $user = DB::table('users')->where('uuid', $uuid)->first();
         return view('frontend.profile.edit', compact('user'));
     }
 

@@ -54,7 +54,7 @@
 
             <!-- Edit Profile Button (Only visible to the profile owner) -->
             @if (Auth::user()->id == $user->id)
-            <a href="{{ url('/profile/' . $user->id) }}" type="button"
+            <a href="{{ url('/profile/' . $user->uuid) }}" type="button"
                 class="-m-2 flex gap-2 items-center rounded-full px-4 py-2 font-semibold bg-gray-100 hover:bg-gray-200 text-gray-700">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-5 h-5">
