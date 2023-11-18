@@ -97,11 +97,14 @@
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
                                 tabindex="-1" id="user-menu-item-1">Edit Profile</a>
 
-                            <form action="{{url('/user/logout')}}" method="post"class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <form action="{{route('logout')}}" method="post"class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 @csrf
-                                <button type="submit" {{--
-                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" --}} role="menuitem"
-                                    tabindex="-1" id="user-menu-item-2">Sign out</button>
+                                <a href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();" role="menuitem"
+                                    tabindex="-1" id="user-menu-item-2">
+                                {{--
+                                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" --}} Sign out</a>
                             </form>
 
                         </div>

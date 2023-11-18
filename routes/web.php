@@ -6,27 +6,26 @@ use App\Http\Controllers\FrontendControllers\RegistrationController;
 use App\Http\Controllers\FrontendControllers\HomeController;
 use App\Http\Controllers\FrontendControllers\ProfileController;
 use App\Http\Controllers\FrontendControllers\PostController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
 
+require __DIR__.'/auth.php';
 //Frontend routes...
-Route::get('/', [LoginController::class, 'login_page']);
-Route::post('/user/login-check', [LoginController::class, 'login']);
-Route::post('/user/logout', [LoginController::class, 'logout']);
-Route::get('/user/registration', [RegistrationController::class, 'create']);
-Route::post('/user/store', [RegistrationController::class, 'store']);
+// Route::get('/', [LoginController::class, 'login_page']);
+// Route::post('/user/login-check', [LoginController::class, 'login']);
+// Route::post('/user/logout', [LoginController::class, 'logout']);
+// Route::get('/user/registration', [RegistrationController::class, 'create']);
+// Route::post('/user/store', [RegistrationController::class, 'store']);
 //home page...
 Route::get('/home', [HomeController::class, 'home'])->name('home');
 //profile routes...
