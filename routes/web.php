@@ -1,12 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FrontendControllers\LoginController;
-use App\Http\Controllers\FrontendControllers\RegistrationController;
+// use App\Http\Controllers\FrontendControllers\LoginController;
+// use App\Http\Controllers\FrontendControllers\RegistrationController;
 use App\Http\Controllers\FrontendControllers\HomeController;
 use App\Http\Controllers\FrontendControllers\ProfileController;
 use App\Http\Controllers\FrontendControllers\PostController;
-
+use App\Http\Controllers\FrontendControllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,3 +37,5 @@ Route::get('/post/{uuid}', [PostController::class, 'single_post'])->name('single
 Route::get('/post/edit/{uuid}', [PostController::class, 'edit'])->name('postEdit');
 Route::put('/post/update/{id}', [PostController::class, 'update'])->name('postUpdate');
 Route::delete('/post/remove/{id}', [PostController::class, 'delete'])->name('postRemove');
+//comment routes...
+Route::post('/comment/store', [CommentController::class, 'store'])->name('commentStore');
