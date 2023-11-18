@@ -147,6 +147,7 @@
         <div class="flex flex-col space-y-6">
             <h1 class="text-lg font-semibold">Comments ({{$totalComment}})</h1>
 
+
             <!-- Barta User Comments Container -->
             <article
                 class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-2 sm:px-6 min-w-full divide-y">
@@ -161,7 +162,7 @@
                                 <!-- User Info -->
                                 <div class="text-gray-900 flex flex-col min-w-0 flex-1">
                                     <a href="profile.html" class="hover:underline font-semibold line-clamp-1">
-                                        Ahmed Shamim Hasan Shaon
+                                        {{$post->user_name}}
                                     </a>
 
                                     <a href="profile.html" class="hover:underline text-sm text-gray-500 line-clamp-1">
@@ -205,7 +206,7 @@
 
                     <!-- Content -->
                     <div class="py-4 text-gray-700 font-normal">
-                        <p>PoorPHP vs Regular PHP 😎 Let the battle begin 💪</p>
+                        <p>comment</p>
                     </div>
 
                     <!-- Date Created -->
@@ -218,6 +219,7 @@
                 <!-- /Comments -->
             </article>
             <!-- /Barta User Comments -->
+           
         </div>
     </section>
     <!-- /Single post -->

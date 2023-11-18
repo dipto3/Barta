@@ -38,7 +38,9 @@ class PostController extends Controller
             ->first();
 
         $totalComment = Comment::where('post_id',$post->id)->count();
-        // dd($totalComment);
+        // $comments = Comment::where('post_id',$post->id)->get();
+
+        // dd($comments );
         return view('frontend.post.single_post', compact('post','totalComment'));
     }
     public function edit($uuid)
