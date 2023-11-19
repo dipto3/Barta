@@ -147,7 +147,7 @@
             <h1 class="text-lg font-semibold">Comments ({{$totalComment}})</h1>
 
 
-            @foreach ($allpost as $posts)
+            @foreach ($allPost as $posts)
 
 
             <!-- Barta User Comments Container -->

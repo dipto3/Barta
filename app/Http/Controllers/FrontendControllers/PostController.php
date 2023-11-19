@@ -37,7 +37,7 @@ class PostController extends Controller
             ->select('posts.*', 'users.name as user_name', 'users.id as uid', 'users.userName as userName', 'users.uuid as userUuid')
             ->first();
 
-        $allpost = DB::table('users')
+        $allPost = DB::table('users')
             ->where('comments.post_id',$post->id)
             ->join('comments', 'users.id', '=', 'comments.user_id')
             ->select('users.*', 'comment','comments.created_at as commentCreatedAt')
@@ -45,7 +45,7 @@ class PostController extends Controller
             ->get();
         // dd($allpost);
         $totalComment = Comment::where('post_id', $post->id)->count();
-        return view('frontend.post.single_post', compact('post', 'totalComment', 'allpost'));
+        return view('frontend.post.single_post', compact('post', 'totalComment', 'allPost'));
     }
     public function edit($uuid)
     {

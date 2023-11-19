@@ -13,9 +13,7 @@ class ProfileController extends Controller
 {
     public function profile($uuid)
     {
-
         $user = DB::table('users')->where('uuid', $uuid)->first();
-        // $posts = DB::table('posts')->where('user_id', $user->id)->orderBy('id','DESC')->get();
         $posts = DB::table('posts')
         ->where('posts.user_id', $user->id)
         ->join('users', 'posts.user_id', '=', 'users.id')
@@ -24,14 +22,8 @@ class ProfileController extends Controller
         ->groupBy('posts.id')
         ->orderBy('id','DESC')
         ->get();
-        // dd($commentCount);
-        // $posts = DB::table('users')
-        //             ->where('users.id', $id)
-        //             ->join('posts', 'posts.user_id', 'users.id')
-        //             ->orderBy('posts.id', 'DESC')
-        //             ->select('posts.*', 'name', 'bio', 'userName')
-        //             ->get();
         // dd($posts);
+
         $totalComment = Comment::where('post_id', 'posts.id')->count();
 
         return view('frontend.profile.your_profile', compact('user','posts'));
@@ -39,7 +31,6 @@ class ProfileController extends Controller
 
     public function edit($uuid)
     {
-
 
         $user = DB::table('users')->where('uuid', $uuid)->first();
         return view('frontend.profile.edit', compact('user'));
