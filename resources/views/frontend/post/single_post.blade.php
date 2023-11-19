@@ -213,7 +213,7 @@
 
                     <!-- Date Created -->
                     <div class="flex items-center gap-2 text-gray-500 text-xs">
-                        <span class="">6m ago</span>
+                        <span class="">{{\Carbon\Carbon::parse($posts->commentCreatedAt)->diffForHumans()}}</span>
                     </div>
                 </div>
                 <!-- /Comment 3 -->

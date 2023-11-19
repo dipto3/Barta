@@ -39,17 +39,12 @@ class PostController extends Controller
 
         $allpost = DB::table('users')
             ->where('comments.post_id',$post->id)
-            ->join('posts', 'users.id', '=', 'posts.user_id')
             ->join('comments', 'users.id', '=', 'comments.user_id')
-            ->select('users.*', 'comment')
-            // ->orderBy('comments.id','DESC')
+            ->select('users.*', 'comment','comments.created_at as commentCreatedAt')
+            ->orderBy('comments.id','DESC')
             ->get();
         // dd($allpost);
         $totalComment = Comment::where('post_id', $post->id)->count();
-
-        // $comments = Comment::where('post_id',$post->id)->get();
-
-        // dd($comments );
         return view('frontend.post.single_post', compact('post', 'totalComment', 'allpost'));
     }
     public function edit($uuid)
