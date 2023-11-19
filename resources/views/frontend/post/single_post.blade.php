@@ -120,8 +120,7 @@
                             }" x-init="resize()" @input="resize()" type="text" name="comment"
                                 placeholder="Write a comment..."
                                 class="flex w-full h-auto min-h-[40px] px-3 py-2 text-sm bg-gray-100 focus:bg-white border border-sm rounded-lg border-neutral-300 ring-offset-background placeholder:text-neutral-400 focus:border-neutral-300 focus:outline-none focus:ring-1 focus:ring-offset-0 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50 text-gray-900">
-
-                            </textarea>
+</textarea>
                         </div>
                         <input type="hidden" name="postId" value="{{ $post->id }}" />
 
@@ -148,6 +147,9 @@
             <h1 class="text-lg font-semibold">Comments ({{$totalComment}})</h1>
 
 
+            @foreach ($allpost as $posts)
+
+
             <!-- Barta User Comments Container -->
             <article
                 class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-2 sm:px-6 min-w-full divide-y">
@@ -162,11 +164,11 @@
                                 <!-- User Info -->
                                 <div class="text-gray-900 flex flex-col min-w-0 flex-1">
                                     <a href="profile.html" class="hover:underline font-semibold line-clamp-1">
-                                        {{$post->user_name}}
+                                        {{$posts->name}}
                                     </a>
 
                                     <a href="profile.html" class="hover:underline text-sm text-gray-500 line-clamp-1">
-                                        @me_shaon
+                                        {{$posts->userName}}
                                     </a>
                                 </div>
                                 <!-- /User Info -->
@@ -206,7 +208,7 @@
 
                     <!-- Content -->
                     <div class="py-4 text-gray-700 font-normal">
-                        <p>comment</p>
+                    <p>{{$posts->comment}}</p>
                     </div>
 
                     <!-- Date Created -->
@@ -219,7 +221,7 @@
                 <!-- /Comments -->
             </article>
             <!-- /Barta User Comments -->
-           
+            @endforeach
         </div>
     </section>
     <!-- /Single post -->
