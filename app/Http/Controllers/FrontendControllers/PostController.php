@@ -40,7 +40,7 @@ class PostController extends Controller
         $allPost = DB::table('users')
             ->where('comments.post_id',$post->id)
             ->join('comments', 'users.id', '=', 'comments.user_id')
-            ->select('users.*', 'comment','comments.created_at as commentCreatedAt')
+            ->select('users.*', 'comment', 'comments.id as commentId', 'comments.user_id as commentuId', 'comments.created_at as commentCreatedAt')
             ->orderBy('comments.id','DESC')
             ->get();
         // dd($allpost);

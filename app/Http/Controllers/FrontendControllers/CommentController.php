@@ -19,4 +19,12 @@ class CommentController extends Controller
         toastr()->addSuccess('','Comment Created Successfully.');
         return redirect()->back();
     }
+
+    public function delete($id)
+    {
+        $this->commentService->remove($id);
+        toastr()->addInfo('', 'Comment Removed Successfully.');
+        return redirect()->back();
+
+    }
 }

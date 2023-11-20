@@ -149,7 +149,6 @@
 
             @foreach ($allPost as $posts)
 
-
             <!-- Barta User Comments Container -->
             <article
                 class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-2 sm:px-6 min-w-full divide-y">
@@ -163,16 +162,19 @@
                             <div class="flex items-center space-x-3">
                                 <!-- User Info -->
                                 <div class="text-gray-900 flex flex-col min-w-0 flex-1">
-                                    <a href="profile.html" class="hover:underline font-semibold line-clamp-1">
+                                    <a href="" class="hover:underline font-semibold line-clamp-1">
                                         {{$posts->name}}
                                     </a>
 
-                                    <a href="profile.html" class="hover:underline text-sm text-gray-500 line-clamp-1">
+                                    <a href="" class="hover:underline text-sm text-gray-500 line-clamp-1">
                                         {{$posts->userName}}
                                     </a>
                                 </div>
                                 <!-- /User Info -->
                             </div>
+
+                            @if (Auth::user()->id == $posts->commentuId)
+
 
                             <!-- Card Action Dropdown -->
                             <div class="flex flex-shrink-0 self-center" x-data="{ open: false }">
@@ -197,12 +199,19 @@
                                         tabindex="-1">
                                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                             role="menuitem" tabindex="-1" id="user-menu-item-0">Edit</a>
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                            role="menuitem" tabindex="-1" id="user-menu-item-1">Delete</a>
+                                            <form class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                            action="{{ route('commentRemove', $posts->commentId) }}" method="post">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" role="menuitem" tabindex="-1"
+                                                id="user-menu-item-1">Delete</button>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
                             <!-- /Card Action Dropdown -->
+
+                            @endif
                         </div>
                     </header>
 

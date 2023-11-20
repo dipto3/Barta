@@ -18,4 +18,10 @@ class CommentService{
         ]);
 
     }
+
+
+    public function remove($id){
+        $loggedInUser = Auth::user()->id;
+        $post = Comment::where('user_id', $loggedInUser)->where('id',$id)->delete();
+    }
 }

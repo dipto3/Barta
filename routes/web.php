@@ -7,6 +7,7 @@ use App\Http\Controllers\FrontendControllers\HomeController;
 use App\Http\Controllers\FrontendControllers\ProfileController;
 use App\Http\Controllers\FrontendControllers\PostController;
 use App\Http\Controllers\FrontendControllers\CommentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,3 +40,4 @@ Route::put('/post/update/{id}', [PostController::class, 'update'])->name('postUp
 Route::delete('/post/remove/{id}', [PostController::class, 'delete'])->name('postRemove');
 //comment routes...
 Route::post('/comment/store', [CommentController::class, 'store'])->name('commentStore');
+Route::delete('/comment/remove/{id}', [CommentController::class, 'delete'])->name('commentRemove');
