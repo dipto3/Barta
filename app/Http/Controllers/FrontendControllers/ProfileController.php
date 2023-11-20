@@ -49,6 +49,7 @@ class ProfileController extends Controller
         ]);
         if ($userInfo) {
             return back()->with('success', 'User information updated Successfully!');
+
         } else {
             return back()->with('fail', 'Something went wrong!!');
         }
