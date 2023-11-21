@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class CommentController extends Controller
 {
@@ -55,6 +56,7 @@ class CommentController extends Controller
             'comment' => $request->comment,
             'updated_at' => Carbon::now()
         ]);
+        toastr()->addInfo('', 'Comment Updated Successfully.');
         return redirect()->back();
 
     }
