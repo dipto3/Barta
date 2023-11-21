@@ -31,6 +31,8 @@ class PostService
             'description' => $request->description,
             'updated_at' => Carbon::now()
         ]);
+
+       
     }
 
     public function remove($id){

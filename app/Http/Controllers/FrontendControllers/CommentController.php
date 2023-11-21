@@ -19,6 +19,7 @@ class CommentController extends Controller
     {
         $this->commentService = $commentService;
     }
+
     public function store(CommentRequest $request)
     {
         $this->commentService->createComment($request);
@@ -29,33 +30,13 @@ class CommentController extends Controller
     public function edit($uuid, $id)
     {
 
-        $post = DB::table('posts')
-            ->where('posts.uuid', $uuid)
-            ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*', 'users.name as user_name', 'users.id as uid', 'users.userName as userName', 'users.uuid as userUuid')
-            ->first();
-
-        $comment = DB::table('comments')
-            ->where('comments.id', $id)
-            ->join('posts', 'comments.post_id', '=', 'posts.id')
-            ->select('comments.*')
-            ->first();
-        // dd($comment);
-        return view('frontend.post.edit_comment', compact('post', 'comment'));
+        $data = $this->commentService->editComment($uuid, $id);
+        return view('frontend.post.edit_comment', $data);
     }
 
     public function update(Request $request, $id){
 
-
-        // dd($request->comment);
-        $loggedInUser = Auth::user()->id;
-        $post = DB::table('comments')
-        ->where('user_id',$loggedInUser)
-        ->where('id', $id)
-        ->update([
-            'comment' => $request->comment,
-            'updated_at' => Carbon::now()
-        ]);
+        $this->commentService->updateComment($request, $id);
         toastr()->addInfo('', 'Comment Updated Successfully.');
         return redirect()->back();
 
@@ -66,6 +47,5 @@ class CommentController extends Controller
         $this->commentService->remove($id);
         toastr()->addInfo('', 'Comment Removed Successfully.');
         return redirect()->back();
-
     }
 }
