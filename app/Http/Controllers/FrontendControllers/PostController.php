@@ -30,29 +30,13 @@ class PostController extends Controller
 
     public function single_post($uuid)
     {
-        $post = DB::table('posts')->where('uuid', $uuid)->increment('total_views', 1);
-        $post = DB::table('posts')
-            ->where('posts.uuid', $uuid)
-            ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*', 'users.name as user_name', 'users.id as uid', 'users.userName as userName', 'users.uuid as userUuid')
-            ->first();
-
-        $allPost = DB::table('users')
-            ->where('comments.post_id',$post->id)
-            ->join('comments', 'users.id', '=', 'comments.user_id')
-            ->select('users.*', 'comment', 'comments.id as commentId', 'comments.user_id as commentuId', 'comments.created_at as commentCreatedAt')
-            ->orderBy('comments.id','DESC')
-            ->get();
-        // dd($allpost);
-        $totalComment = Comment::where('post_id', $post->id)->count();
-        return view('frontend.post.single_post', compact('post', 'totalComment', 'allPost'));
+        $data = $this->postService->singlePost($uuid);
+        return view('frontend.post.single_post', $data);
     }
     public function edit($uuid)
     {
-        $post = DB::table('posts')
-            ->where('uuid', $uuid)
-            ->first();
-        return view('frontend.post.edit', compact('post'));
+        $data = $this->postService->editPost($uuid);
+        return view('frontend.post.edit', $data);
     }
 
     public function update(Request $request, $uuid)
