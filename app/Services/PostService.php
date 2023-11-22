@@ -50,8 +50,8 @@ class PostService
             ->orderBy('comments.id','DESC')
             ->get();
         // dd($allpost);
-        $totalComment = Comment::where('post_id', $post->id)->count();
-
+        
+        $totalComment = DB::table('comments')->where('post_id', $post->id)->count();
         return compact('post','allPost','totalComment');
     }
 

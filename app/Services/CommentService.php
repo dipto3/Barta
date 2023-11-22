@@ -12,11 +12,11 @@ use Carbon\Carbon;
 class CommentService{
     public function createComment($request)
     {
-
-        $comment = Comment::create([
+        $comment = DB::table('comments')->insert([
             'user_id' => Auth::user()->id,
             'post_id' => $request->postId,
             'comment' => $request->comment,
+            'created_at' => Carbon::now()
         ]);
 
     }
