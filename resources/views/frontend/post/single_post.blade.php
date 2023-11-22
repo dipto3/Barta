@@ -146,7 +146,7 @@
                 <h1 class="text-lg font-semibold">Comments ({{ $totalComment }})</h1>
 
 
-                @foreach ($allPost as $posts)
+                @foreach ($allComments as $comment)
                     <!-- Barta User Comments Container -->
                     <article
                         class="bg-white border-2 border-black rounded-lg shadow mx-auto max-w-none px-4 py-2 sm:px-6 min-w-full divide-y">
@@ -161,17 +161,17 @@
                                         <!-- User Info -->
                                         <div class="text-gray-900 flex flex-col min-w-0 flex-1">
                                             <a href="" class="hover:underline font-semibold line-clamp-1">
-                                                {{ $posts->user_name }}
+                                                {{ $comment->user_name }}
                                             </a>
 
                                             <a href="" class="hover:underline text-sm text-gray-500 line-clamp-1">
-                                                {{ $posts->userName }}
+                                                {{ $comment->userName }}
                                             </a>
                                         </div>
                                         <!-- /User Info -->
                                     </div>
 
-                                    @if (Auth::user()->id == $posts->commentuId)
+                                    @if (Auth::user()->id == $comment->commentuId)
                                         <!-- Card Action Dropdown -->
                                         <div class="flex flex-shrink-0 self-center" x-data="{ open: false }">
                                             <div class="relative inline-block text-left">
@@ -193,11 +193,11 @@
                                                     class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                                     role="menu" aria-orientation="vertical"
                                                     aria-labelledby="user-menu-button" tabindex="-1">
-                                                    <a href="{{ route('commentEdit', [$post->uuid, $posts->commentId]) }}"
+                                                    <a href="{{ route('commentEdit', [$post->uuid, $comment->commentId]) }}"
                                                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                                                         role="menuitem" tabindex="-1" id="user-menu-item-0">Edit</a>
                                                     <form class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                                        action="{{ route('commentRemove', $posts->commentId) }}"
+                                                        action="{{ route('commentRemove', $comment->commentId) }}"
                                                         method="post">
                                                         @csrf
                                                         @method('delete')
@@ -214,13 +214,13 @@
 
                             <!-- Content -->
                             <div class="py-4 text-gray-700 font-normal">
-                                <p>{{ $posts->comment }}</p>
+                                <p>{{ $comment->comment }}</p>
                             </div>
 
                             <!-- Date Created -->
                             <div class="flex items-center gap-2 text-gray-500 text-xs">
                                 <span
-                                    class="">{{ \Carbon\Carbon::parse($posts->commentCreatedAt)->diffForHumans() }}</span>
+                                    class="">{{ \Carbon\Carbon::parse($comment->commentCreatedAt)->diffForHumans() }}</span>
                             </div>
                         </div>
                         <!-- /Comment 3 -->

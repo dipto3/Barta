@@ -11,7 +11,7 @@ class PostService
 {
     public function createPost($request)
     {
-      
+
         $post = DB::table('posts')->insert([
             'user_id' => Auth::user()->id,
             'uuid' => Str::uuid()->toString(),
@@ -42,7 +42,7 @@ class PostService
             ->select('posts.*', 'users.name as user_name', 'users.id as uid', 'users.userName as userName', 'users.uuid as userUuid')
             ->first();
 
-        $allPost = DB::table('users')
+        $allComments = DB::table('users')
             ->where('comments.post_id', $post->id)
             ->join('comments', 'users.id', '=', 'comments.user_id')
             ->select('users.name as user_name', 'users.id as uid', 'users.userName as userName', 'users.uuid as userUuid', 'comment', 'comments.id as commentId', 'comments.user_id as commentuId', 'comments.created_at as commentCreatedAt')
@@ -51,7 +51,7 @@ class PostService
         // dd($allpost);
 
         $totalComment = DB::table('comments')->where('post_id', $post->id)->count();
-        return compact('post', 'allPost', 'totalComment');
+        return compact('post', 'allComments', 'totalComment');
     }
 
     public function editPost($uuid)
