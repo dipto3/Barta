@@ -53,6 +53,6 @@ class CommentService{
 
     public function remove($id){
         $loggedInUser = Auth::user()->id;
-        $comment = Comment::where('user_id', $loggedInUser)->where('id',$id)->delete();
+        $comment = DB::table('comments')->where('user_id', $loggedInUser)->where('id',$id)->delete();
     }
 }
