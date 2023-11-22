@@ -4,10 +4,8 @@ namespace App\Http\Controllers\FrontendControllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostFormRequest;
-use App\Models\Comment;
 use App\Services\PostService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
