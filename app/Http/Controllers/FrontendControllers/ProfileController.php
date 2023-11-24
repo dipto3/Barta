@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
+
 class ProfileController extends Controller
 {
     public function profile($uuid)
@@ -47,13 +48,17 @@ class ProfileController extends Controller
             'bio' => $request->bio,
             'password' => Hash::make($request->password),
         ]);
-        // $userInfo->addMediaFromRequest('')->toMediaCollection();
+
+
+        $pathToFile = $request->hasFile('image');
+        $userInfo->addMedia($pathToFile)->toMediaCollection();
+
+
+
         if ($userInfo) {
             return back()->with('success', 'User information updated Successfully!');
-
         } else {
             return back()->with('fail', 'Something went wrong!!');
         }
     }
-
 }

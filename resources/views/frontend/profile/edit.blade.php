@@ -4,7 +4,7 @@
 <main class="container max-w-xl mx-auto space-y-8 mt-8 px-2 md:px-0 min-h-screen">
     <!-- Profile Edit Form -->
 
-    <form method="post" action="{{url('/profile/update/'.$user->id)}}">
+    <form method="post" enctype="multipart/form-data" action="{{url('/profile/update/'.$user->id)}}">
         @csrf
         <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
@@ -29,7 +29,7 @@
                     <div class="col-span-full mt-10 pb-10">
                         <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
                         <div class="mt-2 flex items-center gap-x-3">
-                            <input class="hidden" type="file" name="avatar" id="avatar" />
+                            <input  type="file" name="image" id="avatar" />
                             <img class="h-32 w-32 rounded-full" src="https://avatars.githubusercontent.com/u/831997"
                                 alt="Ahmed Shamim Hasan Shaon" />
                             <label for="avatar">
