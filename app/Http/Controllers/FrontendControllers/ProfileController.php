@@ -47,6 +47,7 @@ class ProfileController extends Controller
             'bio' => $request->bio,
             'password' => Hash::make($request->password),
         ]);
+        // $userInfo->addMediaFromRequest('')->toMediaCollection();
         if ($userInfo) {
             return back()->with('success', 'User information updated Successfully!');
 

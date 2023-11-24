@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Post;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -12,14 +13,23 @@ class PostService
     public function createPost($request)
     {
 
-        $post = DB::table('posts')->insert([
+        // $post = DB::table('posts')->insert([
+        //     'user_id' => Auth::user()->id,
+        //     'uuid' => Str::uuid()->toString(),
+        //     'total_views' => 1,
+        //     'description' => $request->description,
+        //     'created_at' => Carbon::now(),
+        // ]);
+        $post = Post::create([
             'user_id' => Auth::user()->id,
             'uuid' => Str::uuid()->toString(),
             'total_views' => 1,
             'description' => $request->description,
             'created_at' => Carbon::now(),
         ]);
-
+        if ($request->hasFile('image')) {
+            $post->addMediaFromRequest('image')->toMediaCollection();
+        }
     }
 
     public function updatePost($request, $uuid)
@@ -60,7 +70,6 @@ class PostService
             ->where('uuid', $uuid)
             ->first();
         return compact('post');
-
     }
 
     public function remove($id)

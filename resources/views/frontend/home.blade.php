@@ -42,7 +42,7 @@
             </div>
 
             <!-- Create Post Card Bottom -->
-            
+
                 <div>
                     <!-- Card Bottom Action Buttons -->
                     <div class="flex items-center justify-between">
@@ -51,9 +51,9 @@
                         <div>
                           <input
                             type="file"
-                            name="picture"
+                            name="image"
                             id="picture"
-                            class="hidden" />
+                             />
 
                           <label
                             for="picture"
