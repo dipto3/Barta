@@ -41,7 +41,9 @@ class ProfileController extends Controller
     {
 
         $request->validated();
-        $userInfo = User::where('id', $id)->update([
+
+        $userInfo = User::where('id', $id)->first();
+        $userInfo->update([
             'name' => $request->name,
             'email' => $request->email,
             'userName' => $request->userName,
@@ -49,16 +51,13 @@ class ProfileController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-
-        $pathToFile = $request->hasFile('image');
-        $userInfo->addMedia($pathToFile)->toMediaCollection();
-
-
+        if ($request->hasFile('profileimage')) {
+            $userInfo->addMediaFromRequest('profileimage')->toMediaCollection();
+        }
 
         if ($userInfo) {
             return back()->with('success', 'User information updated Successfully!');
-        } else {
-            return back()->with('fail', 'Something went wrong!!');
         }
+        return back()->with('fail', 'Something went wrong!!');
     }
 }

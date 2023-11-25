@@ -29,7 +29,7 @@
                     <div class="col-span-full mt-10 pb-10">
                         <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
                         <div class="mt-2 flex items-center gap-x-3">
-                            <input  type="file" name="image" id="avatar" />
+                            <input  type="file" name="profileimage" id="avatar" />
                             <img class="h-32 w-32 rounded-full" src="https://avatars.githubusercontent.com/u/831997"
                                 alt="Ahmed Shamim Hasan Shaon" />
                             <label for="avatar">
