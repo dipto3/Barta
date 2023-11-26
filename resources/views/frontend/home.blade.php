@@ -145,10 +145,10 @@
                             <div class="flex items-center space-x-3">
                                 <!-- User Avatar -->
                                 <div class="flex-shrink-0">
-                                    <img
+                                    <img src="{{$post->getMedia()}}"
                                       class="h-10 w-10 rounded-full object-cover"
-                                      src="https://avatars.githubusercontent.com/u/831997"
-                                      alt="Ahmed Shamim" />
+
+                                      alt="" />
                                   </div>
                                 <!-- /User Avatar -->
 
@@ -212,9 +212,9 @@
                     <!-- Content -->
                     <div class="py-4 text-gray-700 font-normal">
                          <img
-                      src="https://images.pexels.com/photos/6261178/pexels-photo-6261178.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                      src="{{$post->getFirstMediaUrl()}}"
                       class="min-h-auto w-full rounded-lg object-cover max-h-64 md:max-h-72"
-                      alt="" />
+                      alt="dd" />
                         <p>
                             {{ $post->description }}
                         </p>

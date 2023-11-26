@@ -28,8 +28,10 @@ class PostService
             'created_at' => Carbon::now(),
         ]);
         if ($request->hasFile('image')) {
-            $post->addMediaFromRequest('image')->toMediaCollection();
+            $post->addMedia($request->image)->toMediaCollection();
         }
+
+
     }
 
     public function updatePost($request, $uuid)

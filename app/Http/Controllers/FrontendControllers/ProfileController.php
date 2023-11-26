@@ -14,7 +14,8 @@ class ProfileController extends Controller
 {
     public function profile($uuid)
     {
-        $user = DB::table('users')->where('uuid', $uuid)->first();
+        // $user = DB::table('users')->where('uuid', $uuid)->first();
+        $user = User::where('uuid', $uuid)->first();
         $posts = DB::table('posts')
             ->where('posts.user_id', $user->id)
             ->join('users', 'posts.user_id', '=', 'users.id')
