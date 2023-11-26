@@ -16,7 +16,8 @@ class HomeController extends Controller
         // ->groupBy('posts.id')
         // ->orderBy('id','DESC')
         // ->get();
-        $allPosts = Post::all();
+        $allPosts = Post::with(['comments', 'user'])->orderBy('id','DESC')->get();
+        // dd($allPosts);
         return view('frontend.home',compact('allPosts'));
     }
 }
