@@ -22,8 +22,8 @@
                     <div class="flex-shrink-0">
                         <img
                           class="h-10 w-10 rounded-full object-cover"
-                          src="{{Auth::user()->getFirstMediaUrl()}}"
-                          alt="Ahmed Shamim" />
+                          src="{{ asset((Auth::user()->getFirstMediaUrl() ?: 'avatar.jpg')) }}"
+                          alt="profile" />
                       </div>
                     <!-- /User Avatar -->
 

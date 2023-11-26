@@ -30,7 +30,7 @@
                         <label for="photo" class="block text-sm font-medium leading-6 text-gray-900">Photo</label>
                         <div class="mt-2 flex items-center gap-x-3">
                             <input class="hidden" type="file" name="profileimage" id="avatar" />
-                            <img class="h-32 w-32 rounded-full" src=""
+                            <img class="h-32 w-32 rounded-full" src="{{ asset((Auth::user()->getFirstMediaUrl() ?: 'avatar.jpg')) }}"
                                 alt="Ahmed Shamim Hasan Shaon" />
                             <label for="avatar">
                                 <div
