@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FrontendControllers\CommentController;
 // use App\Http\Controllers\FrontendControllers\LoginController;
 // use App\Http\Controllers\FrontendControllers\RegistrationController;
 use App\Http\Controllers\FrontendControllers\HomeController;
-use App\Http\Controllers\FrontendControllers\ProfileController;
 use App\Http\Controllers\FrontendControllers\PostController;
-use App\Http\Controllers\FrontendControllers\CommentController;
+use App\Http\Controllers\FrontendControllers\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------

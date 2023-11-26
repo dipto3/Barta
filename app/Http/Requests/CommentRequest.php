@@ -24,14 +24,14 @@ class CommentRequest extends FormRequest
     public function rules()
     {
         return [
-            'comment' => 'required'
+            'comment' => 'required',
         ];
     }
 
     public function messages()
     {
         return [
-            'comment.required' => "Comment Must Be Required",
+            'comment.required' => 'Comment Must Be Required',
         ];
     }
 }

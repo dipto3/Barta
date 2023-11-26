@@ -34,13 +34,13 @@ class RegistrationFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "Name field must be required",
-            'email.required' => "Email field must be required",
+            'name.required' => 'Name field must be required',
+            'email.required' => 'Email field must be required',
             'email.unique' => 'The email address is already in use.',
-            'password.required' => "Password field must be required",
-            'userName.required' => "Username must be required",
+            'password.required' => 'Password field must be required',
+            'userName.required' => 'Username must be required',
             'userName.unique' => 'The username is already in use.',
-            'password.min' => "Password must be 4 characters",
+            'password.min' => 'Password must be 4 characters',
 
         ];
     }

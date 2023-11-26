@@ -29,8 +29,8 @@ class ProfileUpdateFormRequest extends FormRequest
         return [
             'name' => 'required',
             'password' => 'nullable|string|min:4',
-            'email' => 'required|email|unique:users,email,' . $userId,
-            'userName' => 'required|string|unique:users,userName,' . $userId,
+            'email' => 'required|email|unique:users,email,'.$userId,
+            'userName' => 'required|string|unique:users,userName,'.$userId,
 
         ];
     }
@@ -38,11 +38,11 @@ class ProfileUpdateFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => "Name field must be required",
-            'password.min' => "Password must be 4 characters",
-            'email.required' => "Email field must be required",
+            'name.required' => 'Name field must be required',
+            'password.min' => 'Password must be 4 characters',
+            'email.required' => 'Email field must be required',
             'email.unique' => 'The email address is already in use.',
-            'userName.required' => "Username must be required",
+            'userName.required' => 'Username must be required',
             'userName.unique' => 'The username is already in use.',
 
         ];

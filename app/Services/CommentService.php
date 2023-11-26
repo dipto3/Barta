@@ -2,21 +2,19 @@
 
 namespace App\Services;
 
-
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Str;
-use App\Models\Comment;
-use Carbon\Carbon;
 
-class CommentService{
+class CommentService
+{
     public function createComment($request)
     {
         $comment = DB::table('comments')->insert([
             'user_id' => Auth::user()->id,
             'post_id' => $request->postId,
             'comment' => $request->comment,
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
         ]);
 
     }
@@ -34,25 +32,27 @@ class CommentService{
             ->join('posts', 'comments.post_id', '=', 'posts.id')
             ->select('comments.*')
             ->first();
+
         // dd($comment);
         return compact('post', 'comment');
 
     }
 
-    public function updateComment($request,$id)
+    public function updateComment($request, $id)
     {
         $loggedInUser = Auth::user()->id;
         $post = DB::table('comments')
-        ->where('user_id',$loggedInUser)
-        ->where('id', $id)
-        ->update([
-            'comment' => $request->comment,
-            'updated_at' => Carbon::now()
-        ]);
+            ->where('user_id', $loggedInUser)
+            ->where('id', $id)
+            ->update([
+                'comment' => $request->comment,
+                'updated_at' => Carbon::now(),
+            ]);
     }
 
-    public function remove($id){
+    public function remove($id)
+    {
         $loggedInUser = Auth::user()->id;
-        $comment = DB::table('comments')->where('user_id', $loggedInUser)->where('id',$id)->delete();
+        $comment = DB::table('comments')->where('user_id', $loggedInUser)->where('id', $id)->delete();
     }
 }

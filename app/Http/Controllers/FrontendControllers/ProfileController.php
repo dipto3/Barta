@@ -5,10 +5,10 @@ namespace App\Http\Controllers\FrontendControllers;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateFormRequest;
 use App\Models\Comment;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-
 
 class ProfileController extends Controller
 {
@@ -16,14 +16,15 @@ class ProfileController extends Controller
     {
         // $user = DB::table('users')->where('uuid', $uuid)->first();
         $user = User::where('uuid', $uuid)->first();
-        $posts = DB::table('posts')
-            ->where('posts.user_id', $user->id)
-            ->join('users', 'posts.user_id', '=', 'users.id')
-            ->select('posts.*', DB::raw('COUNT(comments.id) as comments_count'), 'users.id as userId', 'users.uuid as Useruuid', 'users.name as user_name', 'users.userName as userName')
-            ->leftJoin('comments', 'posts.id', '=', 'comments.post_id')
-            ->groupBy('posts.id')
-            ->orderBy('id', 'DESC')
-            ->get();
+        $posts = Post::with(['comments', 'user'])->where('user_id', $user->id)->orderBy('id', 'DESC')->get();
+        // $posts = DB::table('posts')
+        //     ->where('posts.user_id', $user->id)
+        //     ->join('users', 'posts.user_id', '=', 'users.id')
+        //     ->select('posts.*', DB::raw('COUNT(comments.id) as comments_count'), 'users.id as userId', 'users.uuid as Useruuid', 'users.name as user_name', 'users.userName as userName')
+        //     ->leftJoin('comments', 'posts.id', '=', 'comments.post_id')
+        //     ->groupBy('posts.id')
+        //     ->orderBy('id', 'DESC')
+        //     ->get();
         // dd($posts);
 
         $totalComment = Comment::where('post_id', 'posts.id')->count();
@@ -35,6 +36,7 @@ class ProfileController extends Controller
     {
 
         $user = DB::table('users')->where('uuid', $uuid)->first();
+
         return view('frontend.profile.edit', compact('user'));
     }
 
@@ -53,12 +55,14 @@ class ProfileController extends Controller
         ]);
 
         if ($request->hasFile('profileimage')) {
+            $userInfo->clearMediaCollection();
             $userInfo->addMediaFromRequest('profileimage')->toMediaCollection();
         }
 
         if ($userInfo) {
             return back()->with('success', 'User information updated Successfully!');
         }
+
         return back()->with('fail', 'Something went wrong!!');
     }
 }

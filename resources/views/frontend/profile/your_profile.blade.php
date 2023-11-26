@@ -12,7 +12,7 @@ Profile
             <!-- Avatar -->
             <div class="relative">
                 <img class="w-32 h-32 rounded-full border-2 border-gray-800"
-                    src="{{$user->getFirstMediaUrl()}}" alt="Ahmed Shamim" />
+                    src="{{asset($user->getFirstMediaUrl() ?: 'avatar.jpg')}}" alt="profile" />
                 <!--            <span class="bottom-2 right-4 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>-->
             </div>
             <!-- /Avatar -->
@@ -71,7 +71,7 @@ Profile
                 <!-- User Avatar -->
                 <div class="flex-shrink-0">
                     <img class="h-10 w-10 rounded-full object-cover"
-                        src="https://avatars.githubusercontent.com/u/831997" alt="Ahmed Shamim" />
+                        src="{{ asset((Auth::user()->getFirstMediaUrl() ?: 'avatar.jpg')) }}" alt="" />
                 </div>
                 <!-- /User Avatar -->
 
@@ -183,18 +183,18 @@ Profile
                     <!-- User Avatar -->
                     <div class="flex-shrink-0">
                         <img class="h-10 w-10 rounded-full object-cover"
-                            src="https://avatars.githubusercontent.com/u/831997" alt="Tony Stark" />
+                            src="{{asset($post->user->getFirstMediaUrl() ?: 'avatar.jpg')}}" alt="" />
                     </div>
                     <!-- /User Avatar -->
 
                     <!-- User Info -->
                     <div class="text-gray-900 flex flex-col min-w-0 flex-1">
                         <a href="#" class="hover:underline font-semibold line-clamp-1">
-                            {{$user->name}}
+                            {{$post->user->name}}
                         </a>
 
                         <a href="#" class="hover:underline text-sm text-gray-500 line-clamp-1">
-                            {{$user->userName}}
+                            {{$post->user->userName}}
                         </a>
                     </div>
                     <!-- /User Info -->

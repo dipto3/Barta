@@ -24,15 +24,14 @@ class PostFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'description' => 'required'
+            'description' => 'required',
         ];
     }
-
 
     public function messages()
     {
         return [
-            'description.required' => "Post Description Must Be Required",
+            'description.required' => 'Post Description Must Be Required',
         ];
     }
 }

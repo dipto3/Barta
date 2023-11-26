@@ -145,7 +145,7 @@
                             <div class="flex items-center space-x-3">
                                 <!-- User Avatar -->
                                 <div class="flex-shrink-0">
-                                    <img src="{{$post->user->getFirstMediaUrl()}}"
+                                    <img src="{{asset($post->user->getFirstMediaUrl() ?: 'avatar.jpg')}}"
                                       class="h-10 w-10 rounded-full object-cover"
 
                                       alt="" />
@@ -154,13 +154,13 @@
 
                                 <!-- User Info -->
                                 <div class="text-gray-900 flex flex-col min-w-0 flex-1">
-                                    <a href="{{ url('/profile/user/' . $post->Useruuid) }}"
+                                    <a href="{{ url('/profile/user/' . $post->user->uuid) }}"
                                         class="hover:underline font-semibold line-clamp-1">
                                         {{$post->user->name}}
-                                        {{-- {{ $post->user_name }} --}}
+
                                     </a>
 
-                                    <a href="{{ url('/profile/user/' . $post->Useruuid) }}"
+                                    <a href="{{ url('/profile/user/' . $post->user->uuid) }}"
                                         class="hover:underline text-sm text-gray-500 line-clamp-1">
                                         {{ $post->user->userName }}
                                     </a>
