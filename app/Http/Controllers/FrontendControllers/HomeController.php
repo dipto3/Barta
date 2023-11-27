@@ -4,6 +4,8 @@ namespace App\Http\Controllers\FrontendControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -21,5 +23,17 @@ class HomeController extends Controller
 
         // dd($allPosts);
         return view('frontend.home', compact('allPosts'));
+    }
+
+    public function search(Request $request)
+    {
+        $input = $request->search;
+        $user = User::with(['comments', 'post'])->where('name', 'like', '%' . $input . '%')
+            ->orWhere('email', 'like', '%' . $input . '%')
+            ->orWhere('userName', 'like', '%' . $input . '%')
+            ->get();
+    //   dd($user);
+        return view('frontend.search', compact('user'));
+
     }
 }

@@ -19,15 +19,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 //Frontend routes...
 // Route::get('/', [LoginController::class, 'login_page']);
 // Route::post('/user/login-check', [LoginController::class, 'login']);
 // Route::post('/user/logout', [LoginController::class, 'logout']);
 // Route::get('/user/registration', [RegistrationController::class, 'create']);
 // Route::post('/user/store', [RegistrationController::class, 'store']);
+
 //home page...
 Route::get('/home', [HomeController::class, 'home'])->name('home');
+//search route...
+Route::get('/search', [HomeController::class, 'search'])->name('search');
 //profile routes...
 Route::get('/profile/user/{uuid}', [ProfileController::class, 'profile']);
 Route::get('/profile/{uuid}', [ProfileController::class, 'edit']);

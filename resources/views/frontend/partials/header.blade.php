@@ -29,13 +29,11 @@
                     <!--              </div>-->
                 </div>
                 <!-- Search input -->
-            <form action="" method="POST" class="flex items-center">
-                <input
-                        type="text"
-                        placeholder="Search..."
-                        class="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none"
-                />
-              </form>
+                <form action="{{route('search')}}" method="get" class="flex items-center">
+                    @csrf
+                    <input type="text" name="search" placeholder="Search..."
+                        class="border-2 border-gray-300 bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none" />
+                </form>
                 <div class="hidden sm:ml-6 sm:flex gap-2 sm:items-center">
                     <!-- This Button Should Be Hidden on Mobile Devices -->
                     <!--              <button-->
@@ -89,7 +87,8 @@
                                 class="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
-                                <img class="h-8 w-8 rounded-full" src="{{ asset((Auth::user()->getFirstMediaUrl() ?: 'avatar.jpg')) }}"
+                                <img class="h-8 w-8 rounded-full"
+                                    src="{{ asset((Auth::user()->getFirstMediaUrl() ?: 'avatar.jpg')) }}"
                                     alt="profile" />
                             </button>
                         </div>
@@ -105,13 +104,13 @@
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
                                 tabindex="-1" id="user-menu-item-1">Edit Profile</a>
 
-                            <form action="{{route('logout')}}" method="post"class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+                            <form action="{{route('logout')}}" method="post"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
                                 @csrf
-                                <a href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();" role="menuitem"
-                                    tabindex="-1" id="user-menu-item-2">
-                                {{--
+                                <a href="route('logout')" onclick="event.preventDefault();
+                                                this.closest('form').submit();" role="menuitem" tabindex="-1"
+                                    id="user-menu-item-2">
+                                    {{--
                                     class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" --}} Sign out</a>
                             </form>
 

@@ -51,6 +51,7 @@ class PostService
     public function editPost($uuid)
     {
         $post = Post::with('user')->where('uuid', $uuid)->first();
+
         return compact('post');
     }
 
