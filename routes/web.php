@@ -36,7 +36,7 @@ Route::post('/profile/update/{id}', [ProfileController::class, 'update']);
 Route::post('/post/store', [PostController::class, 'store'])->name('postStore');
 Route::get('/post/{uuid}', [PostController::class, 'single_post'])->name('singlePost');
 Route::get('/post/edit/{uuid}', [PostController::class, 'edit'])->name('postEdit');
-Route::put('/post/update/{id}', [PostController::class, 'update'])->name('postUpdate');
+Route::put('/post/update/{uuid}', [PostController::class, 'update'])->name('postUpdate');
 Route::delete('/post/remove/{id}', [PostController::class, 'delete'])->name('postRemove');
 //comment routes...
 Route::post('/comment/store', [CommentController::class, 'store'])->name('commentStore');

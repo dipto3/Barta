@@ -13,14 +13,6 @@ class PostService
 {
     public function createPost($request)
     {
-
-        // $post = DB::table('posts')->insert([
-        //     'user_id' => Auth::user()->id,
-        //     'uuid' => Str::uuid()->toString(),
-        //     'total_views' => 1,
-        //     'description' => $request->description,
-        //     'created_at' => Carbon::now(),
-        // ]);
         $post = Post::create([
             'user_id' => Auth::user()->id,
             'uuid' => Str::uuid()->toString(),
@@ -29,40 +21,28 @@ class PostService
             'created_at' => Carbon::now(),
         ]);
         if ($request->hasFile('image')) {
-            $post->addMedia($request->image)->toMediaCollection();
+            $post->addMediaFromRequest('image')->toMediaCollection();
         }
     }
 
     public function updatePost($request, $uuid)
     {
-        $loggedInUser = Auth::user()->id;
-        $post = Post::where('uuid', $uuid)->first();
 
+        $post = Post::where('uuid', $uuid)->first();
         $post->update([
             'description' => $request->description,
-
         ]);
+        if ($request->hasFile('image')) {
+            $post->clearMediaCollection();
+            $post->addMediaFromRequest('image')->toMediaCollection();
+        }
     }
 
     public function singlePost($uuid)
     {
         $post = DB::table('posts')->where('uuid', $uuid)->increment('total_views', 1);
-        // $post = DB::table('posts')
-        //
-        //     ->join('users', 'posts.user_id', '=', 'users.id')
-        //     ->select('posts.*', 'users.name as user_name', 'users.id as uid', 'users.userName as userName', 'users.uuid as userUuid')
-        //     ->first();
-        $post = Post::with('user')->where('posts.uuid', $uuid)->first();
-        // dd($post);
-        // $allComments = DB::table('users')
-        //     ->where('comments.post_id', $post->id)
-        //     ->join('comments', 'users.id', '=', 'comments.user_id')
-        //     ->select('users.name as user_name', 'users.id as uid', 'users.userName as userName', 'users.uuid as userUuid', 'comment', 'comments.id as commentId', 'comments.user_id as commentuId', 'comments.created_at as commentCreatedAt')
-        //     ->orderBy('comments.id', 'DESC')
-        //     ->get();
+        $post = Post::with('user')->where('uuid', $uuid)->first();
         $allComments = Comment::with('user')->where('post_id', $post->id)->orderBy('id', 'DESC')->get();
-        // dd($allpost);
-
         $totalComment = Comment::where('post_id', $post->id)->count();
 
         return compact('post', 'allComments', 'totalComment');
@@ -70,14 +50,13 @@ class PostService
 
     public function editPost($uuid)
     {
-        $post = Post::where('uuid', $uuid)->first();
-
+        $post = Post::with('user')->where('uuid', $uuid)->first();
         return compact('post');
     }
 
     public function remove($id)
     {
         $loggedInUser = Auth::user()->id;
-        $post = DB::table('posts')->where('user_id', $loggedInUser)->where('id', $id)->delete();
+        $post = Post::where('user_id', $loggedInUser)->where('id', $id)->delete();
     }
 }

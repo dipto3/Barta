@@ -35,6 +35,7 @@ class PostController extends Controller
 
     public function edit($uuid)
     {
+
         $data = $this->postService->editPost($uuid);
 
         return view('frontend.post.edit', $data);
@@ -42,6 +43,7 @@ class PostController extends Controller
 
     public function update(Request $request, $uuid)
     {
+
         $this->postService->updatePost($request, $uuid);
         toastr()->addInfo('', 'Post Updated Successfully.');
 

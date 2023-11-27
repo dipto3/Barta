@@ -20,12 +20,12 @@
 
                         <!-- User Info -->
                         <div class="text-gray-900 flex flex-col min-w-0 flex-1">
-                            <a href="{{ url('/profile/user/' . $post->userUuid) }}"
+                            <a href="{{ url('/profile/user/' . $post->user->uuid) }}"
                                 class="hover:underline font-semibold line-clamp-1">
                                 {{ $post->user->name }}
                             </a>
 
-                            <a href="{{ url('/profile/user/' . $post->userUuid) }}"
+                            <a href="{{ url('/profile/user/' . $post->user->uuid) }}"
                                 class="hover:underline text-sm text-gray-500 line-clamp-1">
                                 {{ $post->user->userName }}
                             </a>

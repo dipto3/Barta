@@ -8,15 +8,19 @@
         @csrf
         @method('PUT')
         <!-- Create Post Card Top -->
-        <div>
+         <div class="">
             <div class="flex items-start /space-x-3/">
                 <!-- User Avatar -->
+
                 <div class="flex-shrink-0">
                     <img class="h-10 w-10 rounded-full object-cover"
                         src="{{asset($post->user->getFirstMediaUrl() ?: 'avatar.jpg')}}" alt="" />
                 </div>
-                <!-- /User Avatar -->
+                <div class="flex-shrink-0">
+                    <a href="{{ url('/profile/user/' . $post->user->uuid) }}">{{$post->user->name}}</a>
+                </div>
 
+                <!-- /User Avatar -->
                 <!-- Content -->
                 <div class="text-gray-700 font-normal w-full">
                     <!-- Content -->
@@ -37,7 +41,7 @@
         </div>
 
         <!-- Create Post Card Bottom -->
-        <!-- Create Post Card Bottom -->
+
         <div>
             <!-- Card Bottom Action Buttons -->
             <div class="flex items-center justify-between">
@@ -113,5 +117,9 @@
         <!-- /Create Post Card Bottom -->
         <!-- /Create Post Card Bottom -->
     </form>
+
 </main>
+
+
+
 @endsection

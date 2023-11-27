@@ -14,21 +14,9 @@ class ProfileController extends Controller
 {
     public function profile($uuid)
     {
-        // $user = DB::table('users')->where('uuid', $uuid)->first();
+
         $user = User::where('uuid', $uuid)->first();
         $posts = Post::with(['comments', 'user'])->where('user_id', $user->id)->orderBy('id', 'DESC')->get();
-        // $posts = DB::table('posts')
-        //     ->where('posts.user_id', $user->id)
-        //     ->join('users', 'posts.user_id', '=', 'users.id')
-        //     ->select('posts.*', DB::raw('COUNT(comments.id) as comments_count'), 'users.id as userId', 'users.uuid as Useruuid', 'users.name as user_name', 'users.userName as userName')
-        //     ->leftJoin('comments', 'posts.id', '=', 'comments.post_id')
-        //     ->groupBy('posts.id')
-        //     ->orderBy('id', 'DESC')
-        //     ->get();
-        // dd($posts);
-
-        $totalComment = Comment::where('post_id', 'posts.id')->count();
-
         return view('frontend.profile.your_profile', compact('user', 'posts'));
     }
 
