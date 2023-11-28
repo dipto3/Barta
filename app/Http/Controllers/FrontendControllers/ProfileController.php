@@ -14,7 +14,7 @@ class ProfileController extends Controller
     public function profile($uuid)
     {
 
-        $user = User::where('uuid', $uuid)->first();
+        $user = User::with(['comments', 'post'])->where('uuid', $uuid)->first();
         $posts = Post::with(['comments', 'user'])->where('user_id', $user->id)->orderBy('id', 'DESC')->get();
 
         return view('frontend.profile.your_profile', compact('user', 'posts'));

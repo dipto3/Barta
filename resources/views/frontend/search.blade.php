@@ -15,14 +15,16 @@
           <img
             class="w-32 h-32 rounded-full border-2 border-gray-800"
             src="{{ asset(($data->getFirstMediaUrl() ?: 'avatar.jpg')) }}"
-            alt="Ahmed Shamim" />
+            alt="profile" />
 <!--            <span class="bottom-2 right-4 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>-->
         </div>
         <!-- /Avatar -->
 
         <!-- User Meta -->
         <div>
-          <h1 class="font-bold md:text-2xl">{{$data->name}}</h1>
+          <a href="{{ url('/profile/user/' . $data->uuid) }}">
+            <h1 class="font-bold md:text-2xl">{{$data->name}}</h1>
+            </a>
           <p class="text-gray-700">{{$data->bio}}</p>
         </div>
         <!-- / User Meta -->
@@ -69,7 +71,7 @@
       <!-- /Edit Profile Button -->
     </section>
     @empty
-    <b><p style="color: red; font-size:255%; text-align:center">No users Found !</p></b>
+    <b><p style="color: red;  font-size:255%; text-align:center">No users Found !</p></b>
 @endforelse
     <!-- /Cover Container -->
 

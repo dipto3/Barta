@@ -30,13 +30,13 @@ Profile
         <div class="flex flex-row gap-16 justify-center text-center items-center">
             <!-- Total Posts Count -->
             <div class="flex flex-col justify-center items-center">
-                <h4 class="sm:text-xl font-bold">3</h4>
+                <h4 class="sm:text-xl font-bold">{{$user->post->count()}}</h4>
                 <p class="text-gray-600">Posts</p>
             </div>
 
             <!-- Total Comments Count -->
             <div class="flex flex-col justify-center items-center">
-                <h4 class="sm:text-xl font-bold">14</h4>
+                <h4 class="sm:text-xl font-bold">{{$user->comments->count()}}</h4>
                 <p class="text-gray-600">Comments</p>
             </div>
         </div>
