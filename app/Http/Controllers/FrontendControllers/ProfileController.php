@@ -23,8 +23,8 @@ class ProfileController extends Controller
     public function edit($uuid)
     {
 
-        $user = DB::table('users')->where('uuid', $uuid)->first();
-
+     
+        $user = User::where('uuid', $uuid)->first();
         return view('frontend.profile.edit', compact('user'));
     }
 
