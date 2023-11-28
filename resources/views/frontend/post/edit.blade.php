@@ -8,7 +8,7 @@
         @csrf
         @method('PUT')
         <!-- Create Post Card Top -->
-         <div class="">
+        <div class="">
             <div class="flex items-start /space-x-3/">
                 <!-- User Avatar -->
 
@@ -17,7 +17,7 @@
                         src="{{asset($post->user->getFirstMediaUrl() ?: 'avatar.jpg')}}" alt="" />
                 </div>
                 <div class="flex-shrink-0">
-                    <a href="{{ url('/profile/user/' . $post->user->uuid) }}">{{$post->user->name}}</a>
+                    <a href="{{ route('profile' , $post->user->uuid) }}">{{$post->user->name}}</a>
                 </div>
 
                 <!-- /User Avatar -->
@@ -107,7 +107,7 @@
                     <!-- Post Button -->
                     <button type="submit"
                         class="-m-2 flex gap-2 text-xs items-center rounded-full px-4 py-2 font-semibold bg-gray-800 hover:bg-black text-white">
-                       Update Post
+                        Update Post
                     </button>
                     <!-- /Post Button -->
                 </div>

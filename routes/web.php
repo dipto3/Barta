@@ -32,9 +32,9 @@ Route::get('/home', [HomeController::class, 'home'])->name('home');
 //search route...
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 //profile routes...
-Route::get('/profile/user/{uuid}', [ProfileController::class, 'profile']);
-Route::get('/profile/{uuid}', [ProfileController::class, 'edit']);
-Route::post('/profile/update/{id}', [ProfileController::class, 'update']);
+Route::get('/profile/user/{uuid}', [ProfileController::class, 'profile'])->name('profile');
+Route::get('/profile/{uuid}', [ProfileController::class, 'edit'])->name('profile_edit');
+Route::post('/profile/update/{id}', [ProfileController::class, 'update'])->name('profile_update');
 //post routes...
 Route::post('/post/store', [PostController::class, 'store'])->name('postStore');
 Route::get('/post/{uuid}', [PostController::class, 'single_post'])->name('singlePost');

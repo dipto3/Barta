@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class CommentService
 {
-    public function createComment($request)
+    public function create($request)
     {
         $comment = Comment::create([
             'user_id' => Auth::user()->id,
@@ -19,7 +19,7 @@ class CommentService
 
     }
 
-    public function editComment($uuid, $id)
+    public function edit($uuid, $id)
     {
 
         $post = Post::with('user')->where('uuid', $uuid)->first();
@@ -29,7 +29,7 @@ class CommentService
 
     }
 
-    public function updateComment($request, $id)
+    public function update($request, $id)
     {
         $loggedInUser = Auth::user()->id;
         $post = Comment::where('user_id', $loggedInUser)->where('id', $id)->first();

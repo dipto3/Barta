@@ -44,7 +44,7 @@ Profile
 
         <!-- Edit Profile Button (Only visible to the profile owner) -->
         @if (Auth::user()->id == $user->id)
-        <a href="{{ url('/profile/' . $user->uuid) }}" type="button"
+        <a href="{{ route('profile_edit' , $user->uuid) }}" type="button"
             class="-m-2 flex gap-2 items-center rounded-full px-4 py-2 font-semibold bg-gray-100 hover:bg-gray-200 text-gray-700">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                 stroke="currentColor" class="w-5 h-5">
@@ -97,7 +97,7 @@ Profile
                 <div class="flex gap-4 text-gray-600">
                     <!-- Upload Picture Button -->
                     <div>
-                        <input type="file" name="image" id="picture" class="hidden"/>
+                        <input type="file" name="image" id="picture" class="hidden" />
 
                         <label for="picture"
                             class="-m-2 flex gap-2 text-xs items-center rounded-full p-2 text-gray-600 hover:text-gray-800 cursor-pointer">

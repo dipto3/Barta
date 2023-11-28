@@ -20,7 +20,7 @@ class PostController extends Controller
     {
         $request->validated();
         // return (new PostService)->createPost($request);
-        $this->postService->createPost($request);
+        $this->postService->create($request);
         toastr()->addSuccess('', 'Post Created Successfully.');
 
         return redirect()->back();
@@ -36,7 +36,7 @@ class PostController extends Controller
     public function edit($uuid)
     {
 
-        $data = $this->postService->editPost($uuid);
+        $data = $this->postService->edit($uuid);
 
         return view('frontend.post.edit', $data);
     }
@@ -44,7 +44,7 @@ class PostController extends Controller
     public function update(Request $request, $uuid)
     {
 
-        $this->postService->updatePost($request, $uuid);
+        $this->postService->update($request, $uuid);
         toastr()->addInfo('', 'Post Updated Successfully.');
 
         return redirect('/home');
