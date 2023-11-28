@@ -199,7 +199,7 @@ Profile
                     </div>
                     <!-- /User Info -->
                 </div>
-
+                @if (Auth::user()->id == $post->user_id)
                 <!-- Card Action Dropdown -->
                 <div class="flex flex-shrink-0 self-center" x-data="{ open: false }">
                     <div class="relative inline-block text-left">
@@ -233,12 +233,17 @@ Profile
                         </div>
                     </div>
                 </div>
+                @endif
                 <!-- /Card Action Dropdown -->
             </div>
         </header>
 
         <!-- Content -->
         <a href="">
+            <img
+            src="{{$post->getFirstMediaUrl()}}"
+            class="min-h-auto w-full rounded-lg object-cover max-h-64 md:max-h-72"
+            alt="dd" />
             <div class="py-4 text-gray-700 font-normal">
                 <p>
                     {{$post->description}}

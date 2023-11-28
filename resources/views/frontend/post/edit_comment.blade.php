@@ -9,14 +9,21 @@
                 <header>
                     <div class="flex items-center justify-between">
                         <div class="flex items-center space-x-3">
+                            <!-- User Avatar -->
+                <div class="flex-shrink-0">
+                    <img class="h-10 w-10 rounded-full object-cover"
+                        src="{{ asset(($post->user->getFirstMediaUrl() ?: 'avatar.jpg')) }}" alt="" />
+                </div>
+                <!-- /User Avatar -->
+
                             <!-- User Info -->
                             <div class="text-gray-900 flex flex-col min-w-0 flex-1">
-                                <a href="{{ url('/profile/user/' . $post->userUuid) }}" class="hover:underline font-semibold line-clamp-1">
-                                    {{ $post->user_name }}
+                                <a href="{{ url('/profile/user/' . $post->user->uuid) }}" class="hover:underline font-semibold line-clamp-1">
+                                    {{ $post->user->name }}
                                 </a>
 
-                                <a href="{{ url('/profile/user/' . $post->userUuid) }}" class="hover:underline text-sm text-gray-500 line-clamp-1">
-                                    {{ $post->userName }}
+                                <a href="{{ url('/profile/user/' . $post->user->uuid) }}" class="hover:underline text-sm text-gray-500 line-clamp-1">
+                                    {{ $post->user->userName }}
                                 </a>
                             </div>
                             <!-- /User Info -->
