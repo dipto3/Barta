@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     @include('frontend.partials.styles')
     <title>@yield('title', 'Home')</title>
+    @livewireStyles
 </head>
 
 <body class="bg-gray-100">
@@ -16,7 +17,7 @@
     @include('frontend.partials.footer')
 
 
-
+@livewireScripts
 </body>
 
 </html>
