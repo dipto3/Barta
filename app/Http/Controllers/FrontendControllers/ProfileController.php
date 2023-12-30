@@ -4,29 +4,28 @@ namespace App\Http\Controllers\FrontendControllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProfileUpdateFormRequest;
-use App\Models\Post;
-use App\Models\User;
 use App\Services\ProfileService;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
-
     protected $profileService;
+
     public function __construct(ProfileService $profileService)
     {
         $this->profileService = $profileService;
     }
+
     public function profile($uuid)
     {
         $data = $this->profileService->profile($uuid);
+
         return view('frontend.profile.your_profile', $data);
     }
 
     public function edit($uuid)
     {
         $data = $this->profileService->edit($uuid);
+
         return view('frontend.profile.edit', $data);
     }
 
@@ -35,6 +34,7 @@ class ProfileController extends Controller
 
         $request->validated();
         $this->profileService->update($request, $id);
+
         return back()->with('success', 'User information updated Successfully!');
     }
 }

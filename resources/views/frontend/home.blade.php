@@ -78,7 +78,5 @@
             <livewire:home-feed />
         
             <!-- /Barta Card -->
-           
-        <!-- /Barta Card -->
 </main>
 @endsection

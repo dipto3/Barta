@@ -4,8 +4,6 @@ namespace App\Services;
 
 use App\Models\Post;
 use App\Models\User;
-use Illuminate\Http\Request;
-use App\Http\Requests\SearchFormRequest;
 
 class HomeService
 {
@@ -20,10 +18,11 @@ class HomeService
     {
         $request->validated();
         $input = $request->search;
-        $user = User::with(['comments', 'post'])->where('name', 'like', '%' . $input . '%')
-            ->orWhere('email', 'like', '%' . $input . '%')
-            ->orWhere('userName', 'like', '%' . $input . '%')
+        $user = User::with(['comments', 'post'])->where('name', 'like', '%'.$input.'%')
+            ->orWhere('email', 'like', '%'.$input.'%')
+            ->orWhere('userName', 'like', '%'.$input.'%')
             ->get();
+
         return compact('user');
     }
 }

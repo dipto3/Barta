@@ -2,10 +2,8 @@
 
 namespace App\Services;
 
-use App\Http\Requests\ProfileUpdateFormRequest;
 use App\Models\Post;
 use App\Models\User;
-
 use Illuminate\Support\Facades\Hash;
 
 class ProfileService
@@ -14,12 +12,15 @@ class ProfileService
     {
         $user = User::with(['comments', 'post'])->where('uuid', $uuid)->first();
         $posts = Post::with(['comments', 'user'])->where('user_id', $user->id)->orderBy('id', 'DESC')->get();
+
         return compact('user', 'posts');
     }
+
     public function edit($uuid)
     {
 
         $user = User::where('uuid', $uuid)->first();
+
         return compact('user');
     }
 

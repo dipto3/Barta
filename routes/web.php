@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
 //Frontend routes...
 // Route::get('/', [LoginController::class, 'login_page']);
 // Route::post('/user/login-check', [LoginController::class, 'login']);
