@@ -19,7 +19,6 @@
                       <a href="{{ route('profile' , $post->user->uuid) }}"
                           class="hover:underline font-semibold line-clamp-1">
                           {{$post->user->name}}
-
                       </a>
 
                       <a href="{{ route('profile' , $post->user->uuid) }}"
@@ -29,6 +28,7 @@
                   </div>
                   <!-- /User Info -->
               </div>
+              
               @if (Auth::user()->id == $post->user_id)
               <!-- Card Action Dropdown -->
               <div class="flex flex-shrink-0 self-center" x-data="{ open: false }">
