@@ -16,6 +16,8 @@ class CommentService
             'comment' => $request->comment,
         ]);
 
+        return $comment;
+
     }
 
     public function edit($uuid, $id)

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\FrontendControllers;
 
+use App\Events\CommentCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
 use App\Services\CommentService;
@@ -18,7 +19,9 @@ class CommentController extends Controller
 
     public function store(CommentRequest $request)
     {
-        $this->commentService->create($request);
+        $comment = $this->commentService->create($request);
+        //dispatch event
+        event(new CommentCreated($comment, $comment->post));
         toastr()->addSuccess('', 'Comment Created Successfully.');
 
         return redirect()->back();
