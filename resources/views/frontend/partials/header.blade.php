@@ -147,7 +147,7 @@
             </div>
         </div>
 
-        <!-- Mobile menu, show/hide based on menu state. -->
+        {{-- <!-- Mobile menu, show/hide based on menu state. -->
         <!--        <div-->
         <!--          x-show="mobileMenuOpen"-->
         <!--          class="sm:hidden"-->
@@ -210,6 +210,6 @@
         <!--              >-->
         <!--            </div>-->
         <!--          </div>-->
-        <!--        </div>-->
+        <!--        </div>--> --}}
     </nav>
 </header>

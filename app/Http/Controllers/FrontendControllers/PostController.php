@@ -4,8 +4,11 @@ namespace App\Http\Controllers\FrontendControllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostFormRequest;
+use App\Models\Like;
+use App\Models\Post;
 use App\Services\PostService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -56,5 +59,28 @@ class PostController extends Controller
         toastr()->addInfo('', 'Post Removed Successfully.');
 
         return redirect('/home');
+    }
+
+    public function like_unlike($id){
+
+        $loggedInUser = Auth::user()->id;
+        $liked = Like::where('user_id', $loggedInUser)->where('post_id',$id)->first();
+
+        $post = Post::find($id);
+        // dd($post->id);
+        if ($liked) {
+        
+            $liked->delete();
+        } else {
+            // User has not liked the post, so like it
+            Like::create([
+                'user_id' => $loggedInUser,
+                'post_id' => $post->id,
+                'liked' =>true
+            ]);
+        }
+    
+        return redirect()->back();
+
     }
 }

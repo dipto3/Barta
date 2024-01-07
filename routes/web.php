@@ -41,6 +41,7 @@ Route::get('/post/{uuid}', [PostController::class, 'single_post'])->name('single
 Route::get('/post/edit/{uuid}', [PostController::class, 'edit'])->name('postEdit');
 Route::put('/post/update/{uuid}', [PostController::class, 'update'])->name('postUpdate');
 Route::delete('/post/remove/{id}', [PostController::class, 'delete'])->name('postRemove');
+Route::post('/post/like/{id}', [PostController::class, 'like_unlike'])->name('postLike');
 //comment routes...
 Route::post('/comment/store', [CommentController::class, 'store'])->name('commentStore');
 Route::get('/post/{uuid}/comment/{id}/edit', [CommentController::class, 'edit'])->name('commentEdit');
