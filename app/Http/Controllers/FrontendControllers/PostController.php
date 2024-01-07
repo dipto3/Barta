@@ -83,4 +83,13 @@ class PostController extends Controller
         return redirect()->back();
 
     }
+
+    // public function like_list(){
+    //     $loggedInUser = Auth::user()->id;
+    //     $liked = Like::where('user_id', $loggedInUser)->where('read_at',!null)->count();
+    //     dd($liked);
+    //     return view('frontend.partials.header',compact('liked'));
+        
+
+    // }
 }

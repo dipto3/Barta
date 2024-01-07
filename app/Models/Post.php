@@ -32,7 +32,7 @@ class Post extends Model implements HasMedia
 
     public function likes()
     {
-        return $this->belongsToMany(User::class, 'likes','post_id','user_id')->withTimestamps();
+        return $this->hasMany(Like::class,'post_id');
     }
 
     

@@ -29,6 +29,7 @@ require __DIR__.'/auth.php';
 
 //home page...
 Route::get('/home', [HomeController::class, 'home'])->name('home');
+
 //search route...
 Route::get('/search', [HomeController::class, 'search'])->name('search');
 //profile routes...
@@ -42,6 +43,7 @@ Route::get('/post/edit/{uuid}', [PostController::class, 'edit'])->name('postEdit
 Route::put('/post/update/{uuid}', [PostController::class, 'update'])->name('postUpdate');
 Route::delete('/post/remove/{id}', [PostController::class, 'delete'])->name('postRemove');
 Route::post('/post/like/{id}', [PostController::class, 'like_unlike'])->name('postLike');
+Route::get('/post/like-list', [PostController::class, 'like_list'])->name('likeList');
 //comment routes...
 Route::post('/comment/store', [CommentController::class, 'store'])->name('commentStore');
 Route::get('/post/{uuid}/comment/{id}/edit', [CommentController::class, 'edit'])->name('commentEdit');
