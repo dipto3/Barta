@@ -40,9 +40,9 @@
 
                 <!-- notification start -->
                 <div class="hidden sm:ml-6 sm:flex gap-2 sm:items-center">
-                   
+
                     <div class="relative ml-3" x-data="{ open: false }">
-                        
+
                         <div>
                             <p style="float: right; color:red;"><b>{{ $totalLikeCount }} </b></p>
                             <button @click="open = !open" type="button"
@@ -50,7 +50,7 @@
                                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
                                 <span class="sr-only">Open user menu</span>
                                 <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
-                                <svg  fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1"
+                                <svg fill="#000000" height="800px" width="800px" version="1.1" id="Capa_1"
                                     xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                     viewBox="0 0 611.999 611.999" xml:space="preserve" class="w-5 h-5">
                                     <g>
@@ -84,10 +84,21 @@
                             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
                             tabindex="-1">
-                            <a href="{{ url('/profile/user/' . Auth::user()->uuid) }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem"
-                                tabindex="-1" id="user-menu-item-0">Someone liked your post</a>
-                            
+                            @foreach ($user->post as $post)
+                                @foreach ($post->likes as $like)
+                                    <form action="{{ url("/post/{$post->id}/like/{$like->id}/mark-as-read") }}"
+                                        method="post">
+                                        @csrf
+                                        @if ($like->read_at === null)
+                                            <button type="submit"
+                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                                role="menuitem" tabindex="-1"
+                                                id="user-menu-item-0">{{ $like->user->name }} liked your post
+                                            </button>
+                                        @endif
+                                    </form>
+                                @endforeach
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -177,7 +188,7 @@
                         </div>
                     </div>
                 </div>
-               
+
                 <div class="-mr-2 flex items-center sm:hidden">
                     <!-- Mobile menu button -->
                     <button @click="mobileMenuOpen = !mobileMenuOpen" type="button"

@@ -61,35 +61,36 @@ class PostController extends Controller
         return redirect('/home');
     }
 
-    public function like_unlike($id){
+    public function like_unlike($id)
+    {
 
         $loggedInUser = Auth::user()->id;
-        $liked = Like::where('user_id', $loggedInUser)->where('post_id',$id)->first();
+        $liked = Like::where('user_id', $loggedInUser)->where('post_id', $id)->first();
 
         $post = Post::find($id);
         // dd($post->id);
         if ($liked) {
-        
+
             $liked->delete();
         } else {
-            // User has not liked the post, so like it
+
             Like::create([
                 'user_id' => $loggedInUser,
                 'post_id' => $post->id,
-                'liked' =>true
+                'liked' => true,
             ]);
         }
-    
-        return redirect()->back();
 
+        return redirect()->back();
     }
 
-    // public function like_list(){
-    //     $loggedInUser = Auth::user()->id;
-    //     $liked = Like::where('user_id', $loggedInUser)->where('read_at',!null)->count();
-    //     dd($liked);
-    //     return view('frontend.partials.header',compact('liked'));
-        
+    public function markAsRead($uuid, $id)
+    {
+        $like = Like::where('id', $id)->first();
+        // dd($like->id);
+        $like->update(['read_at' => now()]);
 
-    // }
+        return redirect(route('singlePost', ['uuid' => $like->post->uuid]));
+
+    }
 }

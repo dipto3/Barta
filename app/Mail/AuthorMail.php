@@ -4,7 +4,6 @@ namespace App\Mail;
 
 use App\Models\Comment;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -17,22 +16,22 @@ class AuthorMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public Comment  $comment)
+    public function __construct(public Comment $comment)
     {
-        $this->comment =  $comment;
+        $this->comment = $comment;
     }
 
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
-    { 
+    {
         // dd($this->comment);
         return new Envelope(
-            subject: $this->comment->user->name . "Comments in your post",
-           
+            subject: $this->comment->user->name.'Comments in your post',
+
         );
-       
+
     }
 
     /**

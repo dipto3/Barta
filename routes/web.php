@@ -44,6 +44,7 @@ Route::put('/post/update/{uuid}', [PostController::class, 'update'])->name('post
 Route::delete('/post/remove/{id}', [PostController::class, 'delete'])->name('postRemove');
 Route::post('/post/like/{id}', [PostController::class, 'like_unlike'])->name('postLike');
 Route::get('/post/like-list', [PostController::class, 'like_list'])->name('likeList');
+Route::post('/post/{uuid}/like/{id}/mark-as-read', [PostController::class, 'markAsRead'])->name('likes.markAsRead');
 //comment routes...
 Route::post('/comment/store', [CommentController::class, 'store'])->name('commentStore');
 Route::get('/post/{uuid}/comment/{id}/edit', [CommentController::class, 'edit'])->name('commentEdit');
