@@ -7,6 +7,8 @@
     
     "require": {
         "php": "^8.0.2",
+        "ably/laravel-broadcaster": "^1.0",
+        "beyondcode/laravel-websockets": "^1.14",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/breeze": "^1.19",
         "laravel/framework": "^10.10",
@@ -15,6 +17,7 @@
         "livewire/livewire": "^3.3",
         "php-flasher/flasher-laravel": "^1.15",
         "php-flasher/flasher-toastr-laravel": "^1.15",
+        "pusher/pusher-php-server": "^7.2",
         "spatie/laravel-medialibrary": "10.15"
     },
     "require-dev": {

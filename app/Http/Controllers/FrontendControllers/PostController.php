@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\FrontendControllers;
 
+use App\Events\LikeUpdate;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostFormRequest;
 use App\Models\Like;
 use App\Models\Post;
+use App\Notifications\PostLike;
 use App\Services\PostService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -68,29 +70,58 @@ class PostController extends Controller
         $liked = Like::where('user_id', $loggedInUser)->where('post_id', $id)->first();
 
         $post = Post::find($id);
+        $post->user->notifications()
+            ->where('type', 'App\Notifications\PostLike')
+            ->where('data->liker', $loggedInUser)
+            ->where('data->post->id', $post->id)
+            ->delete();
         // dd($post->id);
         if ($liked) {
-
             $liked->delete();
         } else {
 
-            Like::create([
+            $like = Like::create([
                 'user_id' => $loggedInUser,
                 'post_id' => $post->id,
                 'liked' => true,
             ]);
+            $post->user->notify(new PostLike($loggedInUser, $post));
+            // event(new LikeUpdate($like));
         }
 
         return redirect()->back();
     }
 
-    public function markAsRead($uuid, $id)
+    public function markAsRead($uuid)
     {
-        $like = Like::where('id', $id)->first();
-        // dd($like->id);
-        $like->update(['read_at' => now()]);
+    // dd($uuid);
+        // Find the notification by the post UUID
+        $notifications = auth()->user()->unreadNotifications->toArray();
 
-        return redirect(route('singlePost', ['uuid' => $like->post->uuid]));
 
+        $notification = auth()->user()->unreadNotifications
+        ->where('data->post->uuid', $uuid)
+        ->first();
+    
+    // dd($notification);
+        if ($notification) {
+            // Mark the notification as read
+            $notification->markAsRead();
+
+            // Redirect to the post
+            return redirect()->route('singlePost', ['uuid' => $notification->data['post']['uuid']]);
+        }
+
+        // Redirect to a default page if the notification is not found
+        return redirect()->route('home');
     }
+
+    // public function markAsRead($uuid, $id)
+    // {
+    //     $like = Like::where('id', $id)->first();
+    //     // dd($like->id);
+    //     $like->update(['read_at' => now()]);
+
+    //     return redirect(route('singlePost', ['uuid' => $like->post->uuid]));
+    // }
 }

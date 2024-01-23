@@ -12,7 +12,7 @@ class HomeService
 {
     public function home()
     {
-
+        $notifications = auth()->user()->notifications;
         $allPosts = Post::with(['comments', 'user'])->orderBy('id', 'DESC')->get();
 
         $user_id = Auth::user()->id;
@@ -40,7 +40,7 @@ class HomeService
             $totalLikeCount += $likeCount;
         }
 
-        return compact('allPosts', 'totalLikeCount', 'user');
+        return compact('allPosts', 'totalLikeCount', 'user','notifications');
     }
 
     public function search($request)
