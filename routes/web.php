@@ -51,5 +51,4 @@ Route::get('/post/{uuid}/comment/{id}/edit', [CommentController::class, 'edit'])
 Route::put('/post/comment/{id}/update', [CommentController::class, 'update'])->name('commentUpdate');
 Route::delete('/comment/remove/{id}', [CommentController::class, 'delete'])->name('commentRemove');
 
-
 // Route::get('/post/{uuid}/like/{id}/mark-as-read', 'NotificationController@redirectToPost')->name('redirect-to-post');

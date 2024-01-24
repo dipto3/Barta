@@ -40,7 +40,7 @@ class HomeService
             $totalLikeCount += $likeCount;
         }
 
-        return compact('allPosts', 'totalLikeCount', 'user','notifications');
+        return compact('allPosts', 'totalLikeCount', 'user', 'notifications');
     }
 
     public function search($request)

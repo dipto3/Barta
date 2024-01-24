@@ -3,18 +3,16 @@
 namespace App\Livewire;
 
 use App\Models\Like;
-use Livewire\Component;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
+use Livewire\Component;
 
 class LikeNotification extends Component
 {
-
     #[On('echo:like-update, LikeUpdate')]
-
     public function likeUpdate($event)
     {
 
@@ -35,7 +33,7 @@ class LikeNotification extends Component
 
     public function render()
     {
- 
+
         $user_id = Auth::user()->id;
 
         // $like = User::with(['post.user.likes' => function ($query) {

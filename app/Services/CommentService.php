@@ -18,7 +18,8 @@ class CommentService
             'comment' => $request->comment,
         ]);
         $post = Post::find($request->postId); // Assuming postId is the ID of the post
-        $post->user->notify(new PostComment($user, $comment,$post));
+        $post->user->notify(new PostComment($user, $comment, $post));
+
         return $comment;
     }
 
@@ -48,10 +49,9 @@ class CommentService
 
         $comment->delete();
 
-      
         auth()->user()->notifications()
             ->where('type', 'App\Notifications\PostComment')
-            ->where('data->comment->user_id',$loggedInUser)
+            ->where('data->comment->user_id', $loggedInUser)
             ->where('data->comment->post_id', $postId)
             ->delete();
     }

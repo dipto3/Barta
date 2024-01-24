@@ -3,15 +3,17 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 class PostLike extends Notification
 {
     use Queueable;
+
     public $liker;
+
     public $post;
+
     /**
      * Create a new notification instance.
      */
@@ -50,7 +52,7 @@ class PostLike extends Notification
     public function toArray(object $notifiable): array
     {
         return [
-            'message' => auth()->user()->name . ' liked on your post.',
+            'message' => auth()->user()->name.' liked on your post.',
             'liker' => $this->liker,
             'post' => $this->post,
         ];

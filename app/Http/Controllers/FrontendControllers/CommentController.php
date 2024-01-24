@@ -5,10 +5,8 @@ namespace App\Http\Controllers\FrontendControllers;
 use App\Events\CommentCreated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CommentRequest;
-use App\Models\Comment;
 use App\Services\CommentService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class CommentController extends Controller
 {
@@ -49,7 +47,7 @@ class CommentController extends Controller
     public function delete($id)
     {
         $this->commentService->remove($id);
-        
+
         toastr()->addInfo('', 'Comment Removed Successfully.');
 
         return redirect()->back();

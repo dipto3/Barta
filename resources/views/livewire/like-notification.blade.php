@@ -39,64 +39,27 @@ C323.259,126.96,315.532,119.235,306.001,119.235z" />
         </div>
 
         <!-- Dropdown menu -->
-        {{-- <div x-show="open" @click.away="open = false"
-            class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-            role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
-            tabindex="-1">
-            @foreach ($like->post as $post)
-                @foreach ($post->likes as $like)
-                    <form action="{{ url("/post/{$post->id}/like/{$like->id}/mark-as-read") }}"
-                        method="post">
-                        @csrf
-                        @if ($like->read_at === null)
-                            <button type="submit"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                role="menuitem" tabindex="-1"
-                                id="user-menu-item-0">{{ $like->user->name }} liked your post
-                            </button>
-                        @endif
-                    </form>
-                @endforeach
-            @endforeach
-        </div> --}}
 
         <div x-show="open" @click.away="open = false"
             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-            {{-- @foreach(auth()->user()->unreadNotifications as $notification)
-            @if ($notification->type === 'App\Notifications\PostLike')
-                <form action="{{ route('redirect-to-post', ['uuid' => $notification->data['post']['uuid']]) }}" method="get">
-                    @csrf
-                    <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-0">
-                        {{ $notification->data['message'] ?? 'User liked your post' }}
-                    </button>
-                </form>
-            @elseif ($notification->type === 'App\Notifications\PostComment')
-                <form action="{{ route('redirect-to-post', ['uuid' => $notification->data['post']['uuid']]) }}" method="get">
-                    @csrf
-                    <button type="submit" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-0">
+            @foreach (auth()->user()->unreadNotifications as $notification)
+                @if ($notification->type === 'App\Notifications\PostLike')
+                    <a href="{{ route('redirect-to-post', ['uuid' => $notification->data['post']['uuid']]) }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1"
+                        id="user-menu-item-0">
+                        {{ $notification->data['message'] ?? 'User liked your post' }} <br>
+                        <p style="font-size: 13px;">
+                            <b>{{ \Carbon\Carbon::parse($notification->read_at)->diffForHumans() }}</b> </p>
+                    </a>
+                @elseif ($notification->type === 'App\Notifications\PostComment')
+                    <a href="{{ route('redirect-to-post', ['uuid' => $notification->data['post']['uuid']]) }}"
+                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1"
+                        id="user-menu-item-0">
                         {{ $notification->data['message'] ?? 'User commented on your post' }}
-                    </button>
-                </form>
-            @endif
-        @endforeach --}}
-
-        @foreach(auth()->user()->unreadNotifications as $notification)
-    @if ($notification->type === 'App\Notifications\PostLike')
-       
-        
-        <a href="{{ route('redirect-to-post', ['uuid' => $notification->data['post']['uuid']]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-0">
-            {{ $notification->data['message'] ?? 'User liked your post' }}
-        </a>
-    @elseif ($notification->type === 'App\Notifications\PostComment')
-      
-      
-        <a href="{{ route('redirect-to-post', ['uuid' => $notification->data['post']['uuid']]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1" id="user-menu-item-0">
-            {{ $notification->data['message'] ?? 'User commented on your post' }}
-        </a>
-    @endif
-@endforeach
+                    </a>
+                @endif
+            @endforeach
         </div>
     </div>
 </div>
-{{-- {"message":"Piyal Guho Dipto commented on your post.","commenter":1,"comment":{"user_id":1,"post_id":"8","comment":"hlw","updated_at":"2024-01-23T20:35:28.000000Z","created_at":"2024-01-23T20:35:28.000000Z","id":1},"post":{"uuid":"c6ff548d-2607-4262-b4b6-6388dec4f614"}} --}}

@@ -4,11 +4,8 @@ namespace App\Services;
 
 use App\Models\Comment;
 use App\Models\Post;
-use App\Models\User;
-use App\Notifications\PostLike;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class PostService
@@ -26,7 +23,6 @@ class PostService
         if ($request->hasFile('image')) {
             $post->addMediaFromRequest('image')->toMediaCollection();
         }
-        
 
     }
 
@@ -46,22 +42,6 @@ class PostService
     public function singlePost($uuid)
     {
         $user_id = Auth::user()->id;
-        // $users = User::with(['post.likes' => function ($query) {
-        //     $query->select('post_id', DB::raw('count(*) as like_count'))->where('read_at', null)
-        //         ->groupBy('post_id');
-        // }])->find($user_id);
-        // $user = User::with(['post.user.likes' => function ($query) {
-        //     $query->select('post_id', DB::raw('count(*) as like_count'))->where('read_at', null)
-        //         ->groupBy('post_id');
-        // }])->find($user_id);
-        // // dd($user->post);
-        // $totalLikeCount = 0;
-        // foreach ($users->post as $post) {
-        //     // dd($post);
-        //     $postId = $post->id;
-        //     $likeCount = $post->likes->sum('like_count');
-        //     $totalLikeCount += $likeCount;
-        // }
         $post = Post::where('uuid', $uuid)->increment('total_views', 1);
         $post = Post::with('user')->where('uuid', $uuid)->first();
         $allComments = Comment::with('user')->where('post_id', $post->id)->orderBy('id', 'DESC')->get();

@@ -97,14 +97,16 @@ class PostController extends Controller
         $post = Post::where('uuid', $uuid)->first();
         if ($post) {
             $notifications = auth()->user()->unreadNotifications;
-            foreach ($notifications as  $notification) {
+            foreach ($notifications as $notification) {
 
                 if ($notification->data['post']['uuid'] == $uuid) {
                     $notification->markAsRead();
                 }
             }
+
             return redirect()->route('singlePost', ['uuid' => $uuid]);
         }
+
         return redirect()->route('home');
     }
 }
