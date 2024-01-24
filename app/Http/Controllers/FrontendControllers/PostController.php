@@ -94,34 +94,17 @@ class PostController extends Controller
 
     public function markAsRead($uuid)
     {
-    // dd($uuid);
-        // Find the notification by the post UUID
-        $notifications = auth()->user()->unreadNotifications->toArray();
+        $post = Post::where('uuid', $uuid)->first();
+        if ($post) {
+            $notifications = auth()->user()->unreadNotifications;
+            foreach ($notifications as  $notification) {
 
-
-        $notification = auth()->user()->unreadNotifications
-        ->where('data->post->uuid', $uuid)
-        ->first();
-    
-    // dd($notification);
-        if ($notification) {
-            // Mark the notification as read
-            $notification->markAsRead();
-
-            // Redirect to the post
-            return redirect()->route('singlePost', ['uuid' => $notification->data['post']['uuid']]);
+                if ($notification->data['post']['uuid'] == $uuid) {
+                    $notification->markAsRead();
+                }
+            }
+            return redirect()->route('singlePost', ['uuid' => $uuid]);
         }
-
-        // Redirect to a default page if the notification is not found
         return redirect()->route('home');
     }
-
-    // public function markAsRead($uuid, $id)
-    // {
-    //     $like = Like::where('id', $id)->first();
-    //     // dd($like->id);
-    //     $like->update(['read_at' => now()]);
-
-    //     return redirect(route('singlePost', ['uuid' => $like->post->uuid]));
-    // }
 }
