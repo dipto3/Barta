@@ -65,7 +65,6 @@ class PostController extends Controller
 
     public function like_unlike($id)
     {
-
         $loggedInUser = Auth::user()->id;
         $liked = Like::where('user_id', $loggedInUser)->where('post_id', $id)->first();
 
@@ -79,16 +78,15 @@ class PostController extends Controller
         if ($liked) {
             $liked->delete();
         } else {
-
             $like = Like::create([
                 'user_id' => $loggedInUser,
                 'post_id' => $post->id,
                 'liked' => true,
             ]);
             $post->user->notify(new PostLike($loggedInUser, $post));
-            // event(new LikeUpdate($like));
+            event(new LikeUpdate($post));
+            // broadcast(new LikeUpdate($post))->toOthers();
         }
-
         return redirect()->back();
     }
 
@@ -98,15 +96,12 @@ class PostController extends Controller
         if ($post) {
             $notifications = auth()->user()->unreadNotifications;
             foreach ($notifications as $notification) {
-
                 if ($notification->data['post']['uuid'] == $uuid) {
                     $notification->markAsRead();
                 }
             }
-
             return redirect()->route('singlePost', ['uuid' => $uuid]);
         }
-
         return redirect()->route('home');
     }
 }

@@ -1,9 +1,9 @@
 <div class="hidden sm:ml-6 sm:flex gap-2 sm:items-center">
 
     <div class="relative ml-3" x-data="{ open: false }">
-
         <div>
-            <p style="float: right; color:red;"><b>{{ auth()->user()->unreadNotifications->count() }} </b></p>
+            <p  style="float: right; color:red;"><b>{{  $totalLikeCount }} </b></p>
+           
             <button @click="open = !open" type="button"
                 class="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
@@ -43,14 +43,13 @@ C323.259,126.96,315.532,119.235,306.001,119.235z" />
         <div x-show="open" @click.away="open = false"
             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-            @foreach (auth()->user()->unreadNotifications as $notification)
+            @foreach ($notifications as $notification)
                 @if ($notification->type === 'App\Notifications\PostLike')
                     <a href="{{ route('redirect-to-post', ['uuid' => $notification->data['post']['uuid']]) }}"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1"
                         id="user-menu-item-0">
                         {{ $notification->data['message'] ?? 'User liked your post' }} <br>
-                        <p style="font-size: 13px;">
-                            <b>{{ \Carbon\Carbon::parse($notification->read_at)->diffForHumans() }}</b> </p>
+                    
                     </a>
                 @elseif ($notification->type === 'App\Notifications\PostComment')
                     <a href="{{ route('redirect-to-post', ['uuid' => $notification->data['post']['uuid']]) }}"

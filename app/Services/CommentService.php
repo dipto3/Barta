@@ -17,7 +17,7 @@ class CommentService
             'post_id' => $request->postId,
             'comment' => $request->comment,
         ]);
-        $post = Post::find($request->postId); // Assuming postId is the ID of the post
+        $post = Post::find($request->postId); 
         $post->user->notify(new PostComment($user, $comment, $post));
 
         return $comment;

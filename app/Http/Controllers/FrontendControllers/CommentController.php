@@ -21,6 +21,7 @@ class CommentController extends Controller
     {
         $comment = $this->commentService->create($request);
         //dispatch event
+        // broadcast(new CommentCreated($comment, $comment->post))->toOthers();
         event(new CommentCreated($comment, $comment->post));
         toastr()->addSuccess('', 'Comment Created Successfully.');
 

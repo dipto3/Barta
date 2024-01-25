@@ -3,6 +3,8 @@
 namespace App\Events;
 
 use App\Models\Like;
+use App\Models\Post;
+use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -16,7 +18,7 @@ class LikeUpdate implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public function __construct(public Like $like)
+    public function __construct(public Post $post)
     {
         //
     }
@@ -29,7 +31,7 @@ class LikeUpdate implements ShouldBroadcast
     public function broadcastOn(): array
     {
         return [
-            new Channel('like-update'),
+            new PrivateChannel('like-update'),
         ];
     }
 }

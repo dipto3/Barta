@@ -8,8 +8,10 @@ use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
+use Illuminate\Broadcasting\Channel;
+class CommentCreated implements ShouldBroadcast
 
-class CommentCreated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
@@ -30,7 +32,7 @@ class CommentCreated
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('channel-name'),
+            new PrivateChannel('comment'),
         ];
     }
 }

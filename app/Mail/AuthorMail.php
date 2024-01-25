@@ -26,7 +26,7 @@ class AuthorMail extends Mailable
      */
     public function envelope(): Envelope
     {
-        // dd($this->comment);
+        
         return new Envelope(
             subject: $this->comment->user->name.'Comments in your post',
 
