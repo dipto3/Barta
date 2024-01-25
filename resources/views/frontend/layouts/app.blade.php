@@ -19,7 +19,7 @@
 
     @include('frontend.partials.footer')
 
-
+    
 {{-- @livewireScripts --}}
 </body>
 

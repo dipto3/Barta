@@ -15,22 +15,18 @@ class LikeNotification extends Component
     public $totalLikeCount = 0;
     public $notifications = [];
 
-    // Livewire listeners for broadcast events
+   
     #[On('echo:like-update, LikeUpdate')]
     #[On('echo:comment, CommentCreated')]
 
     public function mount()
     {
-      
-        // Initial setup when the component is mounted
         $this->refreshNotifications();
     }
 
-  
-
     public function refreshNotifications()
     {
-        // Logic to refresh notifications
+       
         $this->totalLikeCount = auth()->user()->unreadNotifications->count();
         $this->notifications = auth()->user()->unreadNotifications;
     }
@@ -38,7 +34,6 @@ class LikeNotification extends Component
 
     public function render()
     {
-
         return view('livewire.like-notification', [
             'totalLikeCount' => $this->totalLikeCount,
             'notifications' => $this->notifications,

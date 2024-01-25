@@ -34,6 +34,8 @@ window.Echo = new Echo({
     enabledTransports: ['ws', 'wss'],
 });
 
+        
+   
 // import Echo from '@ably/laravel-echo';
 // import * as Ably from 'ably';
 

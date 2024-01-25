@@ -2,7 +2,7 @@
 
     <div class="relative ml-3" x-data="{ open: false }">
         <div>
-            <p  style="float: right; color:red;"><b>{{  $totalLikeCount }} </b></p>
+            <p wire:poll.keep-alive style="float: right; color:red;"><b>{{  $totalLikeCount }} </b></p>
            
             <button @click="open = !open" type="button"
                 class="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
