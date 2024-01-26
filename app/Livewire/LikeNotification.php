@@ -12,31 +12,17 @@ use Livewire\Component;
 
 class LikeNotification extends Component
 {
-    public $totalLikeCount = 0;
-    public $notifications = [];
 
-   
     #[On('echo:like-update, LikeUpdate')]
     #[On('echo:comment, CommentCreated')]
 
-    public function mount()
-    {
-        $this->refreshNotifications();
-    }
-
-    public function refreshNotifications()
-    {
-       
-        $this->totalLikeCount = auth()->user()->unreadNotifications->count();
-        $this->notifications = auth()->user()->unreadNotifications;
-    }
-
-
     public function render()
     {
+        $totalLikeCount = auth()->user()->unreadNotifications->count();
+        $notifications = auth()->user()->unreadNotifications;
         return view('livewire.like-notification', [
-            'totalLikeCount' => $this->totalLikeCount,
-            'notifications' => $this->notifications,
+            'totalLikeCount' => $totalLikeCount,
+            'notifications' => $notifications,
         ]);
     }
 }

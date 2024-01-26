@@ -20,8 +20,7 @@ class CommentController extends Controller
     public function store(CommentRequest $request)
     {
         $comment = $this->commentService->create($request);
-        //dispatch event
-        // broadcast(new CommentCreated($comment, $comment->post))->toOthers();
+        //dispatch event (For mail send)
         event(new CommentCreated($comment, $comment->post));
         toastr()->addSuccess('', 'Comment Created Successfully.');
 

@@ -30,7 +30,7 @@ class PostController extends Controller
 
         return redirect()->back();
     }
-
+    // post details page
     public function single_post($uuid)
     {
         $data = $this->postService->singlePost($uuid);
@@ -75,9 +75,11 @@ class PostController extends Controller
             ->where('data->post->id', $post->id)
             ->delete();
         // dd($post->id);
+        // Unlike functionality 
         if ($liked) {
             $liked->delete();
         } else {
+            // like functionality 
             $like = Like::create([
                 'user_id' => $loggedInUser,
                 'post_id' => $post->id,
@@ -85,11 +87,10 @@ class PostController extends Controller
             ]);
             $post->user->notify(new PostLike($loggedInUser, $post));
             event(new LikeUpdate($post));
-            // broadcast(new LikeUpdate($post))->toOthers();
         }
         return redirect()->back();
     }
-
+    // When user click notification redirect to the post & mark as read 
     public function markAsRead($uuid)
     {
         $post = Post::where('uuid', $uuid)->first();
