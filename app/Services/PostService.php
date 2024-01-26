@@ -4,9 +4,12 @@ namespace App\Services;
 
 use App\Models\Comment;
 use App\Models\Post;
+use App\Models\Like;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use App\Notifications\PostLike;
+use App\Events\LikeUpdate;
 
 class PostService
 {
@@ -23,7 +26,6 @@ class PostService
         if ($request->hasFile('image')) {
             $post->addMediaFromRequest('image')->toMediaCollection();
         }
-
     }
 
     public function update($request, $uuid)
@@ -61,5 +63,44 @@ class PostService
     {
         $loggedInUser = Auth::user()->id;
         $post = Post::where('user_id', $loggedInUser)->where('id', $id)->delete();
+    }
+
+    public function markAsRead($uuid)
+    {
+        $post = Post::where('uuid', $uuid)->first();
+
+        $notifications = auth()->user()->unreadNotifications;
+        foreach ($notifications as $notification) {
+            if ($notification->data['post']['uuid'] == $uuid) {
+                $notification->markAsRead();
+            }
+        }
+    }
+
+    public function like_unlike($id)
+    {
+        $loggedInUser = Auth::user()->id;
+        $liked = Like::where('user_id', $loggedInUser)->where('post_id', $id)->first();
+
+        $post = Post::find($id);
+        $post->user->notifications()
+            ->where('type', 'App\Notifications\PostLike')
+            ->where('data->liker', $loggedInUser)
+            ->where('data->post->id', $post->id)
+            ->delete();
+        // dd($post->id);
+        // Unlike functionality 
+        if ($liked) {
+            $liked->delete();
+        } else {
+            // like functionality 
+            $like = Like::create([
+                'user_id' => $loggedInUser,
+                'post_id' => $post->id,
+                'liked' => true,
+            ]);
+            $post->user->notify(new PostLike($loggedInUser, $post));
+            event(new LikeUpdate($post));
+        }
     }
 }

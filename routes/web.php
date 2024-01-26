@@ -44,11 +44,10 @@ Route::put('/post/update/{uuid}', [PostController::class, 'update'])->name('post
 Route::delete('/post/remove/{id}', [PostController::class, 'delete'])->name('postRemove');
 Route::post('/post/like/{id}', [PostController::class, 'like_unlike'])->name('postLike');
 Route::get('/post/like-list', [PostController::class, 'like_list'])->name('likeList');
-Route::get('/posts/{uuid}', [PostController::class, 'markAsRead'])->name('redirect-to-post');
+Route::get('/posts/{uuid}', [PostController::class, 'markAsRead'])->name('redirect.to.post');
 //comment routes...
 Route::post('/comment/store', [CommentController::class, 'store'])->name('commentStore');
 Route::get('/post/{uuid}/comment/{id}/edit', [CommentController::class, 'edit'])->name('commentEdit');
 Route::put('/post/comment/{id}/update', [CommentController::class, 'update'])->name('commentUpdate');
 Route::delete('/comment/remove/{id}', [CommentController::class, 'delete'])->name('commentRemove');
 
-// Route::get('/post/{uuid}/like/{id}/mark-as-read', 'NotificationController@redirectToPost')->name('redirect-to-post');

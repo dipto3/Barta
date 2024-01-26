@@ -2,8 +2,9 @@
 
     <div class="relative ml-3" x-data="{ open: false }">
         <div>
-            <p wire:poll.keep-alive style="float: right; color:red;"><b>{{  $totalLikeCount }} </b></p>
-           
+            <!-- Notification countig show -->
+            <p wire:poll.keep-alive style="float: right; color:red;"><b>{{ $totalLikeCount }} </b></p>
+
             <button @click="open = !open" type="button"
                 class="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2"
                 id="user-menu-button" aria-expanded="false" aria-haspopup="true">
@@ -44,15 +45,16 @@ C323.259,126.96,315.532,119.235,306.001,119.235z" />
             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
             @foreach ($notifications as $notification)
+                <!-- Like notification and redirect to the post -->
                 @if ($notification->type === 'App\Notifications\PostLike')
-                    <a href="{{ route('redirect-to-post', ['uuid' => $notification->data['post']['uuid']]) }}"
+                    <a href="{{ route('redirect.to.post', ['uuid' => $notification->data['post']['uuid']]) }}"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1"
                         id="user-menu-item-0">
                         {{ $notification->data['message'] ?? 'User liked your post' }} <br>
-                    
                     </a>
+                    <!-- Comment notification and redirect to the post -->
                 @elseif ($notification->type === 'App\Notifications\PostComment')
-                    <a href="{{ route('redirect-to-post', ['uuid' => $notification->data['post']['uuid']]) }}"
+                    <a href="{{ route('redirect.to.post', ['uuid' => $notification->data['post']['uuid']]) }}"
                         class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem" tabindex="-1"
                         id="user-menu-item-0">
                         {{ $notification->data['message'] ?? 'User commented on your post' }}

@@ -11,13 +11,11 @@ class RegistrationController extends Controller
 {
     public function create()
     {
-
         return view('frontend.auth.registration');
     }
 
     public function store(RegistrationFormRequest $request)
     {
-
         $request->validated();
         $input = DB::table('users')->insert([
             'name' => $request->name,
@@ -25,7 +23,6 @@ class RegistrationController extends Controller
             'userName' => $request->userName,
             'password' => Hash::make($request->password),
         ]);
-
         if ($input) {
             return back()->with('success', 'Registration Successful!');
         } else {
